@@ -3,7 +3,8 @@ Masters Final Year Project (Dissertation)
 
 
 
-PROJECT WORKFLOW:
+**PROJECT WORKFLOW:**
+
 User Register into the system
 User login
 User submits form. The customer can submit multiple requests. They can edit and update the request until it is assigned to a technician. If the request is assigned, then the customer cannot update their submitted request. They need to submit the new request form. The customer submits forms based on their problem. They can choose the category and the service type. The customer can also mention whether their request is of high priority or normal. The customer with the high-priority request is prioritized, and this can cost a little more for them. This approach is used to justify prioritizing the customer request.
@@ -20,7 +21,8 @@ The technician can view their assigned task. They can also view the details of t
 
 
 
-USER
+**USER**
+
 User Register into the system
 User login
 The user can view and update their profile
@@ -30,7 +32,8 @@ The user can track their request. They can view their request status, either ass
 They get the notification of technician assignment and request completion via email.
 The user can log out of the system
 
-TECHNICIAN
+**TECHNICIAN**
+
 Admin creates the login credentials of the technician. Admin creates the account for the admin, and the technician's login credentials are automatically sent to them via their email.
 A technician can login into the system
 Technician can view and update their profile
@@ -40,7 +43,8 @@ Technicians receive a rating based on their request completion.
 The technician can log out of the system
 
 
-ADMIN
+**ADMIN**
+
 Admin logs in to the system
 Admin views the dashboard, which represents a short overview of the system. It displays total requests, total assigned requests, total no. of technicians and users, etc.
 Admin can view and delete the request.
