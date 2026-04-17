@@ -2,6 +2,7 @@
 Master's Final Year Project (Dissertation)
 
 The project has three distinct user roles. They are Customer, Admin, and Technician. The points below give a short overview of each portal's tasks.
+
 **CUSTOMER PORTAL**
 The customer can register in the system.
 They can log in.
