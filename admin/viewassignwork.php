@@ -144,12 +144,6 @@ session_start();
         
          </td>
          </tr>
-         <!-- <tr>
-         <td>Delivery Date</td>
-         <td>
-         <?php /*if(isset($row['deliveryDate'])) {echo $row['deliveryDate']; }*/?>
-         </td>
-         </tr> -->
          
       </tbody>
    </table>

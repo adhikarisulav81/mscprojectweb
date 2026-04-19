@@ -47,10 +47,6 @@ session_start();
             echo '<td>'.$row["techMobile"].'</td>';
             echo '<td>'.$row["techEmail"].'</td>';
 
-            // If rating is greater than 0, show the rating number obtained by a technician (1 complete work =1 rating), if rating is 0 just show 0.
-            // $rating_display = ($row["techRating"] > 0) ? (int)$row["techRating"] . ' <i class="fas fa-star text-warning"></i>' : '0 <i class="fas fa-star text-warning"></i>';
-            // echo '<td>'.$rating_display.'</td>';
-
 
             echo '<td>
               <form action="edittech.php" method="POST"> 

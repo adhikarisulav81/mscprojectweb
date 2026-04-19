@@ -29,7 +29,7 @@ $sql = "SELECT techid FROM technician_tb WHERE techEmail='".$_POST['techEmail'].
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
-  // Email already exists — block the insert
+  // Email already exists, block the insert
   $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert">
      <i class="fas fa-exclamation-circle"></i> A technician with this email already exists. Please use a different email.
    </div>';
@@ -79,7 +79,6 @@ if($result->num_rows > 0){
                        placeholder="Enter Mobile Number" pattern="^07\d{9}$" title="e.g. 07123456789" name="techMobile" value="<?php if(isset($row['techMobile'])) {echo $row['techMobile']; }?>" required>
 
 
-
     </div>
     <div class="form-group">
       <label for="techEmail">Email</label>
@@ -93,15 +92,6 @@ if($result->num_rows > 0){
   </form>
 </div>
 
-<!-- Only Number for input fields -->
-<script>
-  function isInputNumber(evt) {
-    var ch = String.fromCharCode(evt.which);
-    if (!(/[0-9]/.test(ch))) {
-      evt.preventDefault();
-    }
-  }
-</script>
 
 <?php
 include('includes/footer.php'); 

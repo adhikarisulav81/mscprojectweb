@@ -6,7 +6,7 @@ include('../dbConnection.php');
 include('../emailConfig.php');
 session_start();
 
-// ─── Login Check ───────────────────────────────────────────────────────────────
+// Login Check
 if(isset($_SESSION['is_login'])){
     $rEmail = $_SESSION['rEmail'];
 
@@ -22,7 +22,7 @@ if(isset($_SESSION['is_login'])){
     exit();
 }
 
-// ─── Handle Form Submission ────────────────────────────────────────────────────
+// Handle Form Submission
 if(isset($_REQUEST['submitrequest'])){
 
     // Check all required fields are filled
@@ -65,10 +65,6 @@ if(isset($_REQUEST['submitrequest'])){
             $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> Request Submitted Successfully Your Request ID: ' . $genid .' </div>';
 
 
-
-
-            
-
             // Save the new request ID in session for the success page
             $_SESSION['myid'] = $genid;
 
@@ -85,9 +81,6 @@ if(isset($_REQUEST['submitrequest'])){
 ?>
 
 <div class="col-sm-9 col-md-10">
-
-    <!-- Welcome Banner -->
-    
 
     <form action="" method="POST" enctype="multipart/form-data">
         <h3 class="title text-center font-weight-bold text-dark mb-4 mt-5"
@@ -145,7 +138,7 @@ if(isset($_REQUEST['submitrequest'])){
         <!-- Priority surcharge info message (hidden by default) -->
         <div id="priority_info" class="alert alert-info" style="display:none;"></div>
 
-        <!-- ── Request Info (auto-filled by JS) ── -->
+        <!-- Request Info (auto-filled by JS) -->
         <div class="form-group">
             <label for="inputRequestInfo"><i class="fas fa-info-circle"></i> Request Info<span class="text-danger"> *</span></label>
             <input type="text" class="form-control" id="inputRequestInfo"
@@ -153,14 +146,12 @@ if(isset($_REQUEST['submitrequest'])){
                    name="requestinfo" required readonly>
         </div>
 
-        <!-- ── Description ── -->
         <div class="form-group">
             <label for="inputRequestDescription"><i class="fas fa-pen-nib"></i> Description<span class="text-danger"> *</span></label>
             <textarea class="form-control" id="inputRequestDescription"
                       placeholder="Describe your problem in detail" name="requestdesc" rows="3" required></textarea>
         </div>
 
-        <!-- ── Name & Address ── -->
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputName"><i class="fas fa-users"></i> Name<span class="text-danger"> *</span></label>
@@ -174,7 +165,6 @@ if(isset($_REQUEST['submitrequest'])){
             </div>
         </div>
 
-        <!-- ── Contact & Date ── -->
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail"><i class="far fa-envelope"></i> Email<span class="text-danger"> *</span></label>
@@ -203,7 +193,6 @@ if(isset($_REQUEST['submitrequest'])){
             <!-- <p class="text-danger">All fields are required *</p> -->
         </div>
 
-        <!-- ── Buttons ── -->
         <button type="submit" class="btn btn-success mt-2" name="submitrequest">
             <i class="fas fa-paper-plane"></i> Submit
         </button>
@@ -220,18 +209,16 @@ if(isset($_REQUEST['submitrequest'])){
 
 <?php include('includes/footer.php'); ?>
 
-<!-- ──────────────────────────────────────────────────────────────────────────── -->
-<!--  JavaScript: Dynamic Dropdowns + Price Calculation                          -->
-<!-- ──────────────────────────────────────────────────────────────────────────── -->
+<!--  JavaScript: Dynamic Dropdowns and Price Calculation                          -->
 <script>
 $(document).ready(function(){
 
-    // ── Helper: Reset a dropdown back to its default empty option ──────────────
+    //Reset a dropdown back to its default empty option
     function resetDropdown(selector, label){
         $(selector).html('<option value="">' + label + '</option>').prop('disabled', true);
     }
 
-    // ── 1. Load Categories on page load ───────────────────────────────────────
+    // Load Categories on page load
     $.ajax({
         url: "get_catalog.php",
         method: "GET",
@@ -249,7 +236,7 @@ $(document).ready(function(){
         }
     });
 
-    // ── 2. Category changes → Load Subcategories ──────────────────────────────
+    // Category changes - Load Subcategories
     $('#category').change(function(){
         var cat_id = $(this).val();
 
@@ -280,7 +267,7 @@ $(document).ready(function(){
         }
     });
 
-    // ── 3. Subcategory changes → Load Models ──────────────────────────────────
+    // Subcategory changes - Load Models
     $('#subcategory').change(function(){
         var sub_id = $(this).val();
 
@@ -308,7 +295,7 @@ $(document).ready(function(){
         }
     });
 
-    // ── 4. Model changes → Load Services ─────────────────────────────────────
+    // Model changes - Load Services
     $('#model').change(function(){
         var model_id = $(this).val();
 
@@ -335,7 +322,7 @@ $(document).ready(function(){
         }
     });
 
-    // ── 5. Service changes → Fetch Price ──────────────────────────────────────
+    // Service changes - Fetch Price
     $('#service').change(function(){
         var service_id = $(this).val();
 
@@ -359,13 +346,13 @@ $(document).ready(function(){
         }
     });
 
-    // ── 6. Priority changes → Recalculate ────────────────────────────────────
+    // Priority changes - Recalculate
     $('#priority').change(function(){
         calculateFinalPrice();
         updateRequestInfo();
     });
 
-    // ── Calculate Final Price ─────────────────────────────────────────────────
+    // Calculate Final Price
     function calculateFinalPrice(){
         var basePrice  = parseFloat($('#price').val()) || 0;
         var priority   = $('#priority').val();
@@ -386,7 +373,7 @@ $(document).ready(function(){
         $('#final_price').val(finalPrice.toFixed(2));
     }
 
-    // ── Build the Request Info string ─────────────────────────────────────────
+    // Build the Request Info string
     function updateRequestInfo(){
         var category    = $('#category option:selected').text();
         var subcategory = $('#subcategory option:selected').text();

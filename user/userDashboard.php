@@ -23,7 +23,6 @@ if(isset($_SESSION['is_login'])){
  // Priority filter
  $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
 ?>
-<!-- <img class="wave d-print-none" src="../images/wave.png"> -->
 
 <div class="col-sm-9 col-md-10 mt-4">
   <h3 class="title text-center font-weight-bold text-dark mb-4 mt-2" style="font-family: Arial, Helvetica, sans-serif;">
@@ -33,9 +32,7 @@ if(isset($_SESSION['is_login'])){
     Welcome <?php echo $rName ?> !
   </h4>
   <?php
-  // ============================================
-  // SECTION 1: Summary Dashboard Cards
-  // ============================================
+  // Summary Dashboard
   
   // Total Completed Services
   $completed_sql = "SELECT COUNT(*) as total_completed FROM assignwork_tb WHERE requester_email='$rEmail' AND status = 'Completed'";
@@ -79,7 +76,7 @@ if(isset($_SESSION['is_login'])){
 
   ?>
 
-  <!-- Summary Dashboard Cards -->
+  <!-- Dashboard -->
   <div class="row mx-3 mb-4 d-print-none">
     <div class="col-xl-3 col-md-6 mb-3">
       <div class="card border-left-success shadow h-100" style="border-left: 4px solid #1cc88a !important;">
@@ -112,11 +109,7 @@ if(isset($_SESSION['is_login'])){
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Work Started</div>
               <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_started; ?></div>
 
-
-
-
             </div>
-
             
             <div><i class="fas fa-spinner fa-2x text-info"></i></div>
             
@@ -126,10 +119,10 @@ if(isset($_SESSION['is_login'])){
                   <div class="h4 font-weight-bold text-dark">
                   <a href="myRequests.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
                   </div>
-                  </center>
+           </center>
       </div>
       
-      
+    
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
       <div class="card border-left-warning shadow h-100" style="border-left: 4px solid #f6c23e !important;">
@@ -143,13 +136,11 @@ if(isset($_SESSION['is_login'])){
           </div>
         </div>
 
-
         <center>
                   <div class="h4 font-weight-bold text-dark">
                   <a href="myRequests.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
-
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
@@ -164,7 +155,6 @@ if(isset($_SESSION['is_login'])){
           </div>
         </div>
 
-        
         <center>
                   <div class="h4 font-weight-bold text-dark">
                   <a href="myRequests.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
@@ -183,7 +173,6 @@ if(isset($_SESSION['is_login'])){
             <div><i class="fas fa-clock fa-2x text-success"></i></div>
           </div>
         </div>
-
         
         <center>
                   <div class="h4 font-weight-bold text-dark">
@@ -203,7 +192,6 @@ if(isset($_SESSION['is_login'])){
             <div><i class="fas fa-clock fa-2x text-dark"></i></div>
           </div>
         </div>
-
         
         <center>
                   <div class="h4 font-weight-bold text-dark">
@@ -231,7 +219,6 @@ if(isset($_SESSION['is_login'])){
                   </center>
       </div>
 
-     
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
       <div class="card border-left-danger shadow h-100" style="border-left: 4px solid #e74a3b !important;">
@@ -252,14 +239,11 @@ if(isset($_SESSION['is_login'])){
                   </div>
                   </center>
       </div>
-
      
     </div>
   </div>
 
-  <!-- ============================================ -->
-  <!-- SECTION 2: Completed Services Report (assignwork_tb) -->
-  <!-- ============================================ -->
+  <!-- Completed Services Report (assignwork_tb) -->
   <div class="card shadow mb-4 mx-3" id="sales_report">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between d-print-none">
       <h6 class="m-0 font-weight-bold text-success"><i class="fas fa-check-circle"></i> Completed Services Report</h6>

@@ -63,7 +63,7 @@
         <h2 class="title"><span>Create</span> An Account</h2>
            		<div class="input-div one">
            		   <div class="i">
-           		   		<i class="fas fa-user"></i>
+           		   		<i class="fas fa-user"></i> Name
            		   </div>
            		   <div class="div">
                   <input type="text"
@@ -72,7 +72,7 @@
            		</div>
                <div class="input-div one">
            		   <div class="i">
-                  <i class="far fa-envelope"></i>
+                  <i class="far fa-envelope"></i> Email <span class="text-danger"> *</span>
            		   </div>
            		   <div class="div">
                   <input type="email"
@@ -80,27 +80,31 @@
            		   </div>
            		</div>
 
+
+
+
+
            		<div class="input-div pass">
            		   <div class="i"> 
-           		    	<i class="fas fa-lock"></i>
+           		    	<i class="fas fa-lock"></i> Password
            		   </div>
            		   <div class="div">
-                  <input type="password" class="form-control" placeholder="Enter Password" name="rPassword" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                  <input type="password" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$" placeholder="Enter Password" name="rPassword" title="Must contain at least 8 characters, including uppercase, lowercase, number, and special character" required>
             	   </div>
             	</div>
 
               <div class="input-div pass">
            		   <div class="i"> 
-           		    	<i class="fas fa-lock"></i>
+           		    	<i class="fas fa-lock"></i> Confirm Password
            		   </div>
            		   <div class="div">
-                  <input type="password" class="form-control" placeholder="Confirm Password" name="cPassword" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                  <input type="password" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$" placeholder="Confirm Password" name="cPassword" title="Must contain at least 8 characters, including uppercase, lowercase, number, and special character" required>
             	   </div>
             	</div>
 
-              <button type="submit" class="btn btn-primary btn-sm" name="rSignup" title="Register Your Account"><i class="fas fa-user-plus"></i> Sign Up</button>
+              <button type="submit" class="btn btn-primary btn-sm mt-2 mb-3" name="rSignup" title="Register Your Account"><i class="fas fa-user-plus"></i> Sign Up</button>
               <?php if(isset($msg)) {echo $msg; } ?>
-              <a href="index.php" class="btn text-center" title="Back"><i class="fas fa-backward"></i> Back
+              <a href="index.php" class="btn btn-sm btn-secondary text-center mt-2 mb-3" title="Back"><i class="fas fa-backward"></i> Back
               to Home</a>
               <div class="">Already Have an Account ? <a href="user/userLogin.php" class="text-center"><i class="fas fa-sign-in-alt"></i> Click Here To Login</a></div>
             </form>              

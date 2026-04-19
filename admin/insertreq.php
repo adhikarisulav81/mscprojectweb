@@ -54,8 +54,6 @@ if($result->num_rows > 0){
 }
 ?>
 
-<!-- <img class="wave" src="../images/wave.png"> -->
-
 <div class="col-sm-6">
 <h3 class="title text-center font-weight-bold text-dark mb-5 mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-users"></i> ADD <span>NEW USER</span></h3>
 

@@ -32,7 +32,6 @@
 <style>
     .active{
         background-color: #17A2B8;
-        /* 24ad7f */
         color: white;
     }
 </style>

@@ -50,8 +50,6 @@ if($result->num_rows > 0){
 }
 ?>
 
-<!-- <img class="wave" src="../images/wave.png"> -->
-
 <div class="col-sm-6">
   <h3 class="title text-center font-weight-bold text-dark mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-briefcase"></i> UPDATE <span>USER DETAILS</span></h3>
   

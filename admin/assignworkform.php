@@ -7,7 +7,7 @@ include('../emailConfig.php');
 
 session_start();
 
-// ─── Login Check ───────────────────────────────────────────────────────────────
+//  Login Check 
 if(isset($_SESSION['is_adminlogin'])){
     $aEmail = $_SESSION['aEmail'];
 } else {
@@ -15,11 +15,11 @@ if(isset($_SESSION['is_adminlogin'])){
     exit();
 }
 
-// ─── Load Request Data ─────────────────────────────────────────────────────────
+//  Load Request Data 
 if(isset($_REQUEST['id'])){
     $rid = intval($_REQUEST['id']);
 
-    // Check if already assigned — redirect away if so
+    // Check if already assigned redirect if assigned
     $check_sql    = "SELECT * FROM assignwork_tb WHERE request_id = '$rid'";
     $check_result = $conn->query($check_sql);
 
@@ -27,14 +27,14 @@ if(isset($_REQUEST['id'])){
         header("Location: work.php");
         exit();
     } else {
-        // Not assigned yet — load original request details to pre-fill form
+        // Not assigned yet load original request details to pre-fill form
         $sql    = "SELECT * FROM submitrequest_tb WHERE request_id = '$rid'";
         $result = $conn->query($sql);
         $row    = $result->fetch_assoc();
     }
 }
 
-// ─── Handle Manual Assign Form Submission ─────────────────────────────────────
+//  Handle Manual Assign Form Submission
 if(isset($_REQUEST['assign'])){
 
     if(($_REQUEST['request_id']      == "") || ($_REQUEST['request_info']   == "") ||
@@ -56,12 +56,10 @@ if(isset($_REQUEST['assign'])){
         $rassigntech = $_REQUEST['assigntech'];
         $rdate       = $_REQUEST['inputdate'];
         $status      = 'Assigned';
-
-        // $ddate       = isset($_REQUEST['deliveryDate']) ? $_REQUEST['deliveryDate'] : NULL;
         $rpriority   = $_REQUEST['priority'];
 
 
-// Fetch technician email from DB using selected name ──
+// Fetch technician email from DB using selected name
 $tech_email_sql = "SELECT techEmail FROM technician_tb WHERE techName = '$rassigntech'";
 $tech_email_res = $conn->query($tech_email_sql);
 $tech_email_row = $tech_email_res->fetch_assoc();
@@ -85,11 +83,9 @@ $tech_email     = $tech_email_row['techEmail'];
 
         if($conn->query($sql) == TRUE){
             $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> Work Assigned Successfully </div>';
-            // echo "<script>setTimeout(function(){ location.href='work.php'; }, 2000);</script>";
             sendWorkAssignedToTechnician($rassigntech, $tech_email, $rname, $rid, $rinfo, $rdate);
 
           // Check technician workload and send appropriate user notification
-        //   $workload_sql = "SELECT COUNT(*) as active_jobs FROM assignwork_tb WHERE assign_tech = '$rassigntech' AND status != 'Completed' AND request_id != '$rid'";
 
         $workload_sql = "SELECT COUNT(*) as active_jobs 
         FROM assignwork_tb 
@@ -189,7 +185,7 @@ $tech_email     = $tech_email_row['techEmail'];
 
         <div class="form-row">
 
-            <!-- Technician dropdown — sorted by fewest active jobs, then highest rating -->
+            <!-- Technician dropdown sorted by fewest active jobs-->
             <div class="form-group col-md-6">
                 <label for="assigntech">
                     <i class="fas fa-chalkboard-teacher"></i> Assign to Technician
@@ -197,12 +193,7 @@ $tech_email     = $tech_email_row['techEmail'];
                 <select class="form-control" id="assigntech" name="assigntech">
                     <option value="">Select Technician</option>
                     <?php
-                    // $sql_tech = "SELECT t.techName, t.techRating,
-                    //                     COUNT(CASE WHEN a.status NOT IN ('Completed','Rejected') THEN 1 END) AS active_count
-                    //              FROM technician_tb t
-                    //              LEFT JOIN assignwork_tb a ON t.techName = a.assign_tech
-                    //              GROUP BY t.techName, t.techRating
-                    //              ORDER BY active_count ASC, t.techRating DESC";
+                   
                     $sql_tech = "SELECT t.techName, t.techEmail,
                                         COUNT(CASE WHEN a.status NOT IN ('Completed','Rejected') THEN 1 END) AS active_count
                                  FROM technician_tb t
@@ -216,18 +207,9 @@ $tech_email     = $tech_email_row['techEmail'];
                             $tech_name    = $row_tech["techName"];
                             $active_count = $row_tech["active_count"];
 
-                            // $tech_email    = $row_tech["techEmail"];
-
-                            // $rating       = $row_tech["techRating"];
-
                             $active_label = ($active_count > 0)
                                 ? " [" . $active_count . " active jobs]"
                                 : " [Available]";
-
-                            // if($rating > 4)       { $label = " (Highly Rated - " .(int)$rating." works) [Very Busy]"; }
-                            // elseif($rating >= 2)  { $label = " (Medium Rated - " .(int)$rating." works) [Moderate]";  }
-                            // elseif($rating > 0)   { $label = " (Low Rated - "    .(int)$rating." works) [Less Busy]"; }
-                            // else                  { $label = " (No Rating) [Available]"; }
 
                             echo '<option value="' . $tech_name . '">'
                                 . $tech_name . $label . $active_label . '</option>';
@@ -237,11 +219,11 @@ $tech_email     = $tech_email_row['techEmail'];
                 </select>
                 <small class="form-text text-muted">
                     <i class="fas fa-sort-amount-up"></i>
-                    Sorted by availability — fewest active jobs first.
+                    Sorted by availability - lowest active jobs first.
                 </small>
             </div>
 
-            <!-- Assigned Date — today only -->
+            <!-- Assigned Date today only -->
             <div class="form-group col-md-6">
                 <label for="inputDate"><i class="fas fa-calendar-alt"></i> Assigned Date</label>
                 <input type="date" class="form-control" id="inputDate" name="inputdate"
@@ -256,15 +238,10 @@ $tech_email     = $tech_email_row['techEmail'];
                 assignDateInput.max   = assignToday;
             </script>
 
-            <!-- Hidden status — always Assigned for new assignments -->
+            <!-- Hidden status always Assigned for new assignments -->
             <input type="hidden" name="status" value="Assigned">
 
-            <!-- Delivery Date -->
-            <!-- <div class="form-group col-md-6"> -->
-                <!-- <label for="deliveryDate"><i class="fas fa-calendar-alt"></i> Delivery Date</label> -->
-                <!-- <input type="date" class="form-control" id="deliveryDate" name="deliveryDate" value=" -->
-                <?php /*if(isset($row['deliveryDate'])) { echo $row['deliveryDate']; } ?>" min="<?php echo date('Y-m-d'); */?>
-                <!-- "> -->
+            
             </div>
 
         </div>

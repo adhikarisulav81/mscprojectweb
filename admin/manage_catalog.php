@@ -150,7 +150,7 @@ if(isset($_POST['update_service'])){
     exit();
 }
 
-// Handle Form Submissions (POST-Redirect-GET Pattern)
+// Handle Form Submissions
 if(isset($_POST['add_category'])){
     $cat_name = $_REQUEST['category_name'];
     $check = $conn->query("SELECT category_id FROM categories_tb WHERE LOWER(category_name) = LOWER('$cat_name')");
@@ -383,7 +383,7 @@ if(isset($_SESSION['catalog_msg'])){
     </div>
   </div>
 
-  <!-- Separate Management Tables -->
+  <!-- Separate Tables -->
   <div class="row mt-5">
       <!-- Categories Table -->
       <div class="col-md-4">

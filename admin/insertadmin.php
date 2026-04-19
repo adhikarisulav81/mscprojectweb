@@ -20,8 +20,6 @@ if(isset($_REQUEST['addadmin'])){
    $aname = $_REQUEST['name'];
    $aEmail = $_REQUEST['email'];
    $aPassword = md5($_POST['password']);
-  //  $aPassword = $_POST['password'];
-
 
 //Duplicate email check before inserting
 $sql = "SELECT id FROM adminlogin_tb WHERE email='".$_POST['email']."'";

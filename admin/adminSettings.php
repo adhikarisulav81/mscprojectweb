@@ -21,11 +21,9 @@ session_start();
     if($result->num_rows == 1){
      $row = $result->fetch_assoc();
      $oldPassCheck = md5($_REQUEST['oldPassword']);
-    //  $oldPassCheck = $_REQUEST['oldPassword'];
 
      if($oldPassCheck == $row['password']){
        $aPass = md5($_POST['aPassword']);
-      //  $aPass = $_POST['aPassword'];
 
        $sql = "UPDATE adminlogin_tb SET password = '$aPass' WHERE email = '$aEmail'";
        if($conn->query($sql) == TRUE){
@@ -42,8 +40,6 @@ session_start();
   }
 }
 ?>
-
-<!-- <img class="wave" src="../images/wave.png"> -->
 
 <div class="col-sm-6">
   <form class="" method="POST">

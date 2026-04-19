@@ -21,10 +21,7 @@ if($_SESSION['is_login']){
  if(isset($_REQUEST['checkid']) || isset($_REQUEST['id'])){
     $rid = intval(isset($_REQUEST['checkid']) ? $_REQUEST['checkid'] : $_REQUEST['id']);
     
-    // First check assignwork_tb
-    // $sql = "SELECT * FROM assignwork_tb WHERE request_id = $rid AND requester_email = '$rEmail'";
-
-
+    // Check assignwork_tb
     // Join is used to connect with assignwork_tb with submitrequest_tb to get the request_date data from the submitrequest_tb
     $sql = "SELECT * FROM assignwork_tb a
             LEFT JOIN submitrequest_tb s ON a.request_id = s.request_id
@@ -34,8 +31,7 @@ if($_SESSION['is_login']){
     if($result && $result->num_rows > 0){
         $row = $result->fetch_assoc();
     } else {
-        // Fallback to submitrequest_tb
-        // $sql = "SELECT *, '-' as assign_date, '-' as assign_tech, 'Not Assigned' as status, '-' as deliveryDate FROM submitrequest_tb WHERE request_id = $rid AND requester_email = '$rEmail'";
+        // Else check to submitrequest_tb
         $sql = "SELECT *, 'Not Assigned Yet' as assign_date, 'Request Not Assigned to Technician' as assign_tech, 'Not Assigned' as status FROM submitrequest_tb WHERE request_id = $rid AND requester_email = '$rEmail'";
 
         $result = $conn->query($sql);
@@ -43,7 +39,6 @@ if($_SESSION['is_login']){
             $row = $result->fetch_assoc();
         } else {
             echo '<div class="alert alert-danger mx-5 mt-4">Record not found or access denied.</div>';
-            // Stop execution of the rest for this element
         }
     }
  }
@@ -117,13 +112,7 @@ if($_SESSION['is_login']){
             ?>
          </td>
          </tr>
-         <tr>
-         <!-- <td class="font-weight-bold text-success" style="background-color: #f8f9fa;">Delivery Date</td> -->
-         <!-- <td class="text-success font-weight-bold"><?php /*if(isset($row['deliveryDate'])) {echo $row['deliveryDate']; }*/?></td> -->
-         </tr>
-         <?php /* if(isset($row['status']) && $row['status'] == "Completed") { ?>
          
-         <?php } */?>
       </tbody>
    </table>
  </div>

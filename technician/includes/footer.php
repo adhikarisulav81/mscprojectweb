@@ -19,13 +19,13 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- End Datepicker -->
 
-<!-- Datatable initialization script -->
+<!-- Datatable script -->
 <script>
 $(document).ready(function() {
     $('#dataTableID').DataTable();
 } );
 </script>
-<!-- End Datatable initialization -->
+<!-- End Datatable -->
 
 </body>
 

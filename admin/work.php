@@ -5,7 +5,7 @@ include('includes/header.php');
 include('../dbConnection.php');
 session_start();
 
-// ─── Login Check ───────────────────────────────────────────────────────────────
+//Login Check
 if(isset($_SESSION['is_adminlogin'])){
     $aEmail = $_SESSION['aEmail'];
 } else {
@@ -13,9 +13,8 @@ if(isset($_SESSION['is_adminlogin'])){
     exit();
 }
 
-// ─── Dual Filter Setup ─────────────────────────────────────────────────────────
-// Both filters read from the URL and default to 'All' if not set.
-// They work independently and simultaneously.
+
+// Both filters read from the URL and default to 'All' if not set. They run independently and simultaneously.
 $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
 $status_filter   = isset($_GET['status'])   ? $_GET['status']   : 'All';
 ?>
@@ -73,7 +72,6 @@ $status_filter   = isset($_GET['status'])   ? $_GET['status']   : 'All';
     </div>
 
     <?php
-    // ─── Base Query Definitions ─────────────────────────────────────────────────
 
     // Unassigned: requests in submitrequest_tb with NO matching row in assignwork_tb
     // LEFT JOIN + WHERE a.request_id IS NULL finds truly unassigned requests
@@ -90,8 +88,7 @@ $status_filter   = isset($_GET['status'])   ? $_GET['status']   : 'All';
                              assign_date AS request_date, status, assign_tech, priority
                       FROM assignwork_tb";
 
-    // ─── Build Priority Filter Conditions ──────────────────────────────────────
-    // Two separate arrays because:
+    // Build Priority Filter Conditions, Two separate arrays because:
     // - unassigned query uses s.priority (table alias needed due to JOIN)
     // - assigned query uses plain priority (single table, no alias needed)
     $u_filter = [];
@@ -101,7 +98,7 @@ $status_filter   = isset($_GET['status'])   ? $_GET['status']   : 'All';
         $a_filter[] = "priority = '$priority_filter'";
     }
 
-    // ─── Build Final SQL Based on Status Filter ────────────────────────────────
+    // Build Final SQL Based on Status Filter
     if($status_filter == 'Not Started'){
         // "Not Started" = unassigned requests + requests with Assigned status (work not begun)
         $u_sql = $unassigned_base;
@@ -119,7 +116,7 @@ $status_filter   = isset($_GET['status'])   ? $_GET['status']   : 'All';
         $sql = $a_sql . " ORDER BY request_date DESC";
 
     } elseif($status_filter == 'Not Assigned'){
-        // Truly unassigned (not in assignwork_tb at all)
+        // unassigned (not in assignwork_tb at all)
         $u_sql = $unassigned_base;
         if(!empty($u_filter)){ $u_sql .= " AND " . implode(" AND ", $u_filter); }
         $sql = $u_sql . " ORDER BY request_date DESC";
@@ -157,7 +154,7 @@ $status_filter   = isset($_GET['status'])   ? $_GET['status']   : 'All';
 
     $result = $conn->query($sql);
 
-    // ─── Render Table ──────────────────────────────────────────────────────────
+    // Table
     if($result->num_rows > 0):
         echo '<div class="table-responsive-sm mx-5">';
         echo '<table id="dataTableID" class="table table-hover">

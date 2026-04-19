@@ -11,22 +11,7 @@ session_start();
   echo "<script> location.href='adminLogin.php'; </script>";
  }
 
-// Deletion Logic Removed
-
-// Enable/Disable Logic
-// if(isset($_REQUEST['toggle_status'])){
-//   $status_val = intval($_REQUEST['status']);
-//   $sql = "UPDATE userlogin_tb SET is_active = $status_val WHERE id = {$_REQUEST['id']}";
-//   if($conn->query($sql) === TRUE){
-//     header("Location: user.php?status_updated");
-//     exit;
-//   } else {
-//     $errorMsg = "Unable to Update Status. SQL Error: " . $conn->error;
-//   }
-// }
 ?>
-
-<!-- <img class="wave" src="../images/wave.png"> -->
 
 <div class="col-sm-9 col-md-10">
   <!--Table-->
@@ -49,28 +34,18 @@ session_start();
         </thead>
         <tbody>';
           while($row = $result->fetch_assoc()){
-            // $is_active = isset($row['is_active']) ? $row['is_active'] : 1;
-            // $status_badge = ($is_active == 1) ? '<span class="badge badge-success p-2">Active</span>' : '<span class="badge badge-danger p-2">Disabled</span>';
-            // $toggle_action = ($is_active == 1) ? 0 : 1;
-            // $toggle_btn_class = ($is_active == 1) ? 'btn-warning' : 'btn-success';
-            // $toggle_icon = ($is_active == 1) ? 'fa-user-slash' : 'fa-user-check';
-            // $toggle_title = ($is_active == 1) ? 'Disable User' : 'Enable User';
+           
 
             echo '<tr>';
               echo '<th scope="row">'.$row["id"]. '.'.'</th>';
               echo '<td>'. $row["name"].'</td>';
               echo '<td>'.$row["email"].'</td>';
-              // echo '<td>'.$status_badge.'</td>';
               echo '<td>
                 <form action="editreq.php" method="POST" class="d-inline"> 
                   <input type="hidden" name="id" value='. $row["id"] .'>
                   <button type="submit" class="btn btn-sm btn-primary mt-2" name="view" title="View"><i class="fas fa-edit"></i> Edit</button>
                 </form>  
-                <!-- <form action="" method="POST" class="d-inline">
-                  <input type="hidden" name="id" value='./* $row["id"] .*/'>
-                  <input type="hidden" name="status" value='. /*$toggle_action .*/'>
-                  <button type="submit" class="btn ' ./* $toggle_btn_class .*/ ' btn-sm mt-2 ml-1" name="toggle_status" title="'./*$toggle_title.*/'"><i class="fas './*$toggle_icon.*/'"></i></button>
-                </form>-->
+                
               </td>
             </tr>';
           }

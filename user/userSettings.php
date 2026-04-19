@@ -6,7 +6,6 @@ include('../dbConnection.php');
 session_start();
 
 
-//include('../UserModel.php');
  if($_SESSION['is_login']){
   $rEmail = $_SESSION['rEmail'];
  } else {
@@ -42,7 +41,6 @@ $rEmail = $_SESSION['rEmail'];
 }
 ?>
 
-<!-- <img class="wave" src="../images/wave.png"> -->
   <div class="col-sm-6">
     
     <form class="" method="POST">

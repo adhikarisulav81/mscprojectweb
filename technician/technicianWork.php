@@ -4,9 +4,9 @@ define('PAGE', 'technicianWork');
 include('includes/header.php'); 
 include('../dbConnection.php');
 include('../emailConfig.php');
-//way of remembering who is logged in across pages.
-session_start();
 
+//Login check to know who is logged in.
+session_start();
  if(isset($_SESSION['is_techlogin'])){ //isset() checks if a variable exists.
 
 //  If the technician is logged in, their email is saved in $tEmail.
@@ -44,11 +44,6 @@ session_start();
     // Update status to Completed 
     $sql_update = "UPDATE assignwork_tb SET status = 'Completed' WHERE request_id = '$rid'";
     if($conn->query($sql_update) == TRUE){ //Only runs the next steps if this update was successful.
-
-      // Rewards the technician by adding 1 point to their rating score
-      // $sql_update_tech = "UPDATE technician_tb SET techRating = techRating + 1 WHERE techName = '$tech_name'";
-      
-      // $conn->query($sql_update_tech);
 
 
       // Check if there is another assigned job for this technician and notify the user
@@ -103,7 +98,7 @@ if(isset($_REQUEST['startwork'])){
     <!--Table-->
     <h3 class="title text-center font-weight-bold text-dark mb-4" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-list"></i> <span>ASSIGNED WORK</span> ORDERS</h3>
     
-    <!-- Status Filter UI -->
+    <!-- Status Filter -->
     <!-- It checks the URL for a ?status= value (e.g. ?status=Completed). If nothing is in the URL, it defaults to 'All'.-->
     <?php $status_filter = isset($_GET['status']) ? $_GET['status'] : 'All'; ?>
     <div class="d-flex justify-content-center mb-4 flex-wrap align-items-center">
@@ -183,7 +178,6 @@ if(isset($_REQUEST['startwork'])){
 
               //Displays the status as a coloured badge in the table.
               echo '<td><span class="badge '.$status_class.' p-2">'.$status.'</span></td>';
-              // echo '<td>'.$row["deliveryDate"].'</td>';
               echo '<td>
                 <form action="technicianViewWork.php" method="POST" class="d-inline"> 
                   <input type="hidden" name="id" value='. $row["request_id"] .'>

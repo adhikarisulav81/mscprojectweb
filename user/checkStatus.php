@@ -113,7 +113,7 @@ else                             { $badge_class = "badge-primary";   }
         <!-- Status Stepper -->
         <div class="status-stepper mb">
           <div class="progress" style="height: 15px;">
-<!-- Dynamic $progress_color variable (for dynamically changing the progress bar color according to the status) -->
+<!-- Dynamic $progress_color variable for dynamically changing the progress bar color according to the status -->
 <div class="progress-bar <?php echo $progress_color; ?>" role="progressbar" style="width: <?php echo $progress; ?>%;" aria-valuenow="<?php echo $progress; ?>" aria-valuemin="0" aria-valuemax="100"></div>          </div>
           <div class="d-flex justify-content-between mt-1 text-center step-labels">
             <div class="step-item <?php echo $steps['Submitted']; ?>">
@@ -239,19 +239,6 @@ else                             { $badge_class = "badge-primary";   }
   }
   ?>
 
-  <!-- Stepper Styles -->
-  <!-- <style>
-    .step-item { color: #ccc; flex: 1; transition: all 0.3s ease; }
-    .step-item.active { color: #000; }
-    .step-icon { font-size: 1.5rem; margin-bottom: 5px; }
-    .step-item.active .step-icon { transform: scale(1.2); }
-    .progress-bar { transition: width 1s ease-in-out; }
-    @media print {
-      .card { border: 1px solid #ddd !important; box-shadow: none !important; }
-      .bg-dark { background-color: #343a40 !important; }
-    }
-  </style> -->
-
   <style>
     .step-item                     { color: #ccc; flex: 1; transition: all 0.3s ease; }
     .step-item.active              { color: #000; }
@@ -270,19 +257,7 @@ else                             { $badge_class = "badge-primary";   }
     }
 </style>
 
-
-
 </div>
-
-<!-- Only Number for input fields -->
-<!-- <script>
-  function isInputNumber(evt) {
-    var ch = String.fromCharCode(evt.which);
-    if (!(/[0-9]/.test(ch))) {
-      evt.preventDefault();
-    }
-  }
-</script> -->
 
 <?php
 include('includes/footer.php'); 

@@ -50,7 +50,6 @@ session_start();
     } else {
       echo "No Records Found.";
     }
-// Deletion logic removed
 ?>
 
   </div>

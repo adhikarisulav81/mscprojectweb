@@ -87,11 +87,6 @@ if(!isset($_SESSION['is_login'])){ //Checks if the user is already logged in
   </header>
 
 
-  <!-- Boostrap JavaScript -->
-  <script src="../js/jquery.min.js"></script>
-  <script src="../js/popper.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/all.min.js"></script>
-</body>
-
-</html>
+  <?php
+include('includes/footer.php'); 
+?>

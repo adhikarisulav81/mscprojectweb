@@ -13,7 +13,6 @@ session_start();
  // Priority filter
  $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
 ?>
-<!-- <img class="wave d-print-none" src="../images/wave.png"> -->
 
 <div class="col-sm-9 col-md-10 mt-4">
   <h3 class="title text-center font-weight-bold text-dark mb-4 mt-2" style="font-family: Arial, Helvetica, sans-serif;">
@@ -24,10 +23,8 @@ session_start();
         Welcome <?php echo $aEmail; ?> !
     </h4>
   <?php
-  // ============================================
-  // SECTION 1: Summary Dashboard Cards
-  // ============================================
-  
+  // Summary Dashboard
+
   // Total Completed Services
   $completed_sql = "SELECT COUNT(*) as total_completed FROM assignwork_tb WHERE status = 'Completed'";
   $completed_res = $conn->query($completed_sql);
@@ -104,7 +101,7 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
   $total_users = ($user_res && $r = $user_res->fetch_assoc()) ? $r['total_users'] : 0;
   ?>
 
-  <!-- Summary Dashboard Cards -->
+  <!-- Summary Dashboard -->
   <div class="row mx-3 mb-4 d-print-none">
     <div class="col-xl-3 col-md-6 mb-3">
       <div class="card border-left-success shadow h-100" style="border-left: 4px solid #1cc88a !important;">
@@ -136,8 +133,6 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
             <div>
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Work Started</div>
               <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_started; ?></div>
-
-
 
 
             </div>
@@ -429,9 +424,7 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
   </div>
 
 
-  <!-- ============================================ -->
-  <!-- SECTION 2: Completed Services Report (assignwork_tb) -->
-  <!-- ============================================ -->
+  <!-- Completed Services Report (assignwork_tb) -->
   <div class="card shadow mb-4 mx-3" id="sales_report">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between d-print-none">
       <h6 class="m-0 font-weight-bold text-success"><i class="fas fa-check-circle"></i> Completed Services Report</h6>
@@ -527,61 +520,6 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
     <button class="btn btn-success btn-md shadow" onClick="window.print()"><i class="fas fa-print"></i> Print Full Report</button>
   </div>
   </div>
-
-  
-
-
-
-
-  <!-- <div class="mt-4">
-        <h5 class="text-center font-weight-bold text-dark mb-2"><i class="fas fa-list"></i> All Submitted Requests</h5>
-        <?php
-          // Unified query for all requests
-          // $unassigned_sql = "SELECT request_id, request_info, requester_name, request_date, 'Not Assigned' as status, '-' as technician FROM submitrequest_tb";
-          // $assigned_sql = "SELECT request_id, request_info, requester_name, assign_date as request_date, status, assign_tech as technician FROM assignwork_tb";
-          // $sql = "($unassigned_sql) UNION ($assigned_sql) ORDER BY request_date DESC";
-          
-          // $result = $conn->query($sql);
-          // if($result->num_rows > 0){
-          //   echo '<div class="table-responsive-sm">';
-          //   echo '<table id="dataTableID" class="table table-hover">
-          //     <thead>
-          //     <tr>
-          //       <th scope="col">Req ID</th>
-          //       <th scope="col">Info</th>
-          //       <th scope="col">Customer</th>
-          //       <th scope="col">Technician</th>
-          //       <th scope="col">Date</th>
-          //       <th scope="col">Status</th>
-          //     </tr>
-          //     </thead>
-          //     <tbody>';
-          //     while($row = $result->fetch_assoc()){
-          //       $status = $row["status"];
-          //       $status_class = "badge-secondary";
-          //       if($status == "Completed") $status_class = "badge-success";
-          //       elseif($status == "Assigned" || $status == "Pending") $status_class = "badge-info";
-          //       elseif($status == "Not Assigned") $status_class = "badge-warning";
-
-          //       echo '<tr>';
-          //         echo '<th scope="row">'.$row["request_id"].'</th>';
-          //         echo '<td>'. $row["request_info"].'</td>';
-          //         echo '<td>'.$row["requester_name"].'</td>';
-          //         echo '<td>'.$row["technician"].'</td>';
-          //         echo '<td>'.$row["request_date"].'</td>';
-          //         echo '<td><span class="badge '.$status_class.' p-2">'.$status.'</span></td>';
-          //       echo '</tr>';
-          //     }
-          //   echo '</tbody>
-          //   </table>';
-          //   echo '</div>';
-          //   } else {
-          //     echo '<div class="alert alert-info" role="alert">No requests found.</div>';
-          //   }
-        ?>
-      </div>
-
-</div> -->
 
 <?php
 include('includes/footer.php'); 

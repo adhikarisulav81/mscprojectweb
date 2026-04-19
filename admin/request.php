@@ -6,7 +6,7 @@ include('../dbConnection.php');
 include('../emailConfig.php');
 session_start();
 
-// ─── Login Check ───────────────────────────────────────────────────────────────
+//  Check is the user logged in or not
 if(isset($_SESSION['is_adminlogin'])){
     $aEmail = $_SESSION['aEmail'];
 } else {
@@ -14,11 +14,10 @@ if(isset($_SESSION['is_adminlogin'])){
     exit();
 }
 
-// ─── Rejection Logic ───────────────────────────────────────────────────────────
 // Runs only when the Reject button is clicked
 if(isset($_REQUEST['reject'])){
 
-    // Convert ID to integer for safety — prevents SQL injection
+    // Convert ID to integer for safety — this helps prevent SQL injection
     $requestId = intval($_REQUEST['id']);
     $rejection_reason = isset($_REQUEST['rejection_reason']) ? trim($_REQUEST['rejection_reason']) : '';
 
@@ -65,12 +64,12 @@ if(isset($_REQUEST['reject'])){
     }
 }
 
-// ─── Auto-Assign Logic ─────────────────────────────────────────────────────────
+// Auto-Assign Logic 
 if(isset($_REQUEST['auto_assign'])){
 
   $requestId = intval($_REQUEST['id']);
 
-  // Step 1 — Fetch the original request details from submitrequest_tb
+  // Fetch the original request details from submitrequest_tb
   $req_sql    = "SELECT * FROM submitrequest_tb WHERE request_id = $requestId";
   $req_result = $conn->query($req_sql);
 
@@ -86,7 +85,7 @@ if(isset($_REQUEST['auto_assign'])){
       $rprice    = $req_row['service_price'];
       $rdate     = date('Y-m-d');
 
-      // Step 2 — Find technician with LOWEST active job count
+      // Find technician with Lowest active job count
       // techEmail is now included so we can notify them directly
       $tech_sql = "SELECT t.techName, t.techEmail,
                           COUNT(CASE WHEN a.status NOT IN ('Completed', 'Rejected') THEN 1 END) AS active_count
@@ -101,10 +100,10 @@ if(isset($_REQUEST['auto_assign'])){
       if($tech_result->num_rows == 1){
           $tech_row      = $tech_result->fetch_assoc();
           $assigned_tech = $tech_row['techName'];
-          $tech_email    = $tech_row['techEmail'];  // ← was missing entirely before
+          $tech_email    = $tech_row['techEmail']; 
           $tech_active   = $tech_row['active_count'];
 
-          // Step 3 — Insert the assignment into assignwork_tb
+          // Insert the assignment into assignwork_tb
           $insert_sql = "INSERT INTO assignwork_tb 
                           (request_id, request_info, request_desc, requester_name, requester_add1,
                            requester_email, requester_mobile, assign_tech, assign_date, status,
@@ -120,7 +119,7 @@ if(isset($_REQUEST['auto_assign'])){
                              <strong>$assigned_tech</strong> 
                              (Active Jobs: $tech_active). <a href='work.php'>Click Here to View</a>";
 
-              // Step 4 — Notify technician of their new assigned job
+              //Notify technician of their new assigned job
               sendWorkAssignedToTechnician(
                   $assigned_tech,
                   $tech_email,
@@ -130,8 +129,8 @@ if(isset($_REQUEST['auto_assign'])){
                   $rdate
               );
 
-              // Step 5 — Check technician workload EXCLUDING the job just inserted
-              // If they have other active jobs already, warn the customer
+              // Check technician workload EXCLUDING the job just inserted
+              // If they have other active jobs already, notify the customer
               $workload_sql = "SELECT COUNT(*) as active_jobs 
                                FROM assignwork_tb 
                                WHERE assign_tech = '$assigned_tech' 
@@ -141,7 +140,7 @@ if(isset($_REQUEST['auto_assign'])){
               $workload_row = $workload_res->fetch_assoc();
 
               if($workload_row['active_jobs'] > 0){
-                  // Technician has other active jobs — send busy notification to customer
+                  // Technician has other active jobs, send busy notification to customer
                   sendTechnicianBusyNotification(
                       $rname,
                       $remail,
@@ -149,7 +148,7 @@ if(isset($_REQUEST['auto_assign'])){
                       $requestId
                   );
               } else {
-                  // Technician is free — send standard assignment confirmation to customer
+                  // Technician is available, send assignment notification to customer
                   sendWorkAssignedToUser(
                       $rname,
                       $remail,
@@ -172,7 +171,7 @@ if(isset($_REQUEST['auto_assign'])){
   }
 }
 
-// ─── Priority Filter ───────────────────────────────────────────────────────────
+// Priority Filter
 // Reads ?priority=High or ?priority=Normal from the URL. Defaults to 'All'.
 $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
 ?>
@@ -190,7 +189,7 @@ $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
     <?php if(isset($errorMsg)):   echo '<div class="alert alert-danger mx-3">'  . $errorMsg   . '</div>'; endif; ?>
     <?php if(isset($successMsg)): echo '<div class="alert alert-success mx-3">' . $successMsg . '</div>'; endif; ?>
 
-    <!-- ── Priority Filter Buttons ──────────────────────────────────────────── -->
+    <!-- Priority Filter Buttons -->
     <div class="mt-3 mb-3 mx-3">
         <div class="btn-group" role="group" aria-label="Priority Filter">
             <a href="request.php?priority=All"
@@ -208,7 +207,7 @@ $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
         </div>
     </div>
 
-    <!-- ── Pending Requests Table ────────────────────────────────────────────── -->
+    <!-- Pending Requests Table -->
     <?php
     // Build query — show only requests NOT yet in assignwork_tb (truly pending)
     // LEFT JOIN with assignwork_tb; WHERE a.status IS NULL means no matching assigned record
@@ -264,7 +263,7 @@ $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
                   <td><span class="badge badge-warning p-2">Not Assigned</span></td>
                   <td>';
 
-            // ── View Button ──────────────────────────────────────────────────
+            // View Button
             echo '<form action="viewassignwork.php" method="POST" class="d-inline">
                     <input type="hidden" name="id" value="' . $row["request_id"] . '">
                     <button type="submit" class="btn btn-info btn-sm mr-1 mb-1" title="View Details">
@@ -272,7 +271,7 @@ $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
                     </button>
                   </form>';
 
-            // ── Auto-Assign Button ───────────────────────────────────────────
+            // Auto-Assign Button+
             // Clicking this triggers the auto_assign logic at the top of this file
             // No manual technician selection needed — system picks the best available technician
             echo '<form action="" method="POST" class="d-inline"
@@ -284,10 +283,8 @@ $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
                     </button>
                   </form>';
 
-            // ── Reject Button ────────────────────────────────────────────────
-            // onsubmit confirm() shows a browser popup before rejecting
-            echo '<form action="" method="POST" class="d-inline"
-                        onsubmit="return confirm(\'Reject Request #' . $row["request_id"] . '? This cannot be undone.\')">
+            // Reject Button
+            echo '<form action="" method="POST" class="d-inline">
                     <input type="hidden" name="id" value="' . $row["request_id"] . '">
 
                     <button type="button" class="btn btn-danger btn-sm mb-1 ml-1" data-toggle="modal" data-target="#rejectModal'.$row["request_id"].'" title="Reject Request">

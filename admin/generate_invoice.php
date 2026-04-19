@@ -80,9 +80,6 @@ if(isset($_POST['id'])){
                                 <strong>Invoice Date:</strong> <?php echo $invoice_date; ?><br>
                                 <strong>Assigned:</strong> <?php echo $row['assign_date']; ?><br>
                                 <strong>Completed:</strong> <?php echo $row['created_at']; ?><br>
-
-                                <!-- <strong>Delivery Date:</strong>  -->
-                                <?php /*echo $row['deliveryDate']; */?>
                             </td>
                         </tr>
                     </table>
@@ -133,11 +130,6 @@ if(isset($_POST['id'])){
                 <td colspan="2"><?php echo nl2br(htmlspecialchars($row['request_desc'])); ?></td>
             </tr>
         </table>
-        
-        <!-- <div class="signature-box mt-5 pt-5">
-            <strong>Authorized Signature</strong><br>
-            _______________________________
-        </div> -->
         
         <div class="text-center mt-4 d-print-none">
             <button onclick="window.print();" class="btn btn-success btn-md shadow"><i class="fas fa-print"></i> Print Invoice</button>
