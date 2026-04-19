@@ -61,15 +61,15 @@ $total = ($total_res && $r = $total_res->fetch_assoc()) ? $r['total'] : 0;
 <!-- <img class="wave" src="../images/wave.png"> -->
 
 <div class="col-sm-9 col-md-10">
-  <h3 class="title text-center font-weight-bold text-dark mb-3 mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-tachometer-alt"></i> TECHNICIAN <span>DASHBOARD</span></h3>
+  <!-- <h3 class="title text-center font-weight-bold text-dark mb-3 mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-tachometer-alt"></i> TECHNICIAN <span>DASHBOARD</span></h3> -->
   
-  <h4 class="text-center text-white bg-dark mb-4" style="padding: 7px; border-radius: 5px;">
+  <h4 class="text-center text-white bg-dark mb-4 mt-4" style="padding: 7px; border-radius: 5px;">
     Welcome <?php echo $tName ?> !
   </h4>
 
   <div class="row text-center">
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #1cc88a !important;">
+      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #198754 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
@@ -80,62 +80,62 @@ $total = ($total_res && $r = $total_res->fetch_assoc()) ? $r['total'] : 0;
           </div>
         </div>
         <center>
-        <div class="h4 font-weight-bold text-dark">
-          <a href="technicianWork.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+        <div class="h4 font-weight-bold text-success">
+          <a href="technicianWork.php" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
         </div>
         </center>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-info shadow h-100" style="border-left: 4px solid #36b9cc !important;">
+      <div class="card border-left-secondary shadow h-100" style="border-left: 4px solid #6C757D !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Work Started</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_started; ?></div>
+              <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Work Started</div>
+              <div class="h4 mb-0 font-weight-bold text-secondary"><?php echo $total_started; ?></div>
             </div>
-            <div><i class="fas fa-spinner fa-2x text-info"></i></div>
+            <div><i class="fas fa-play fa-2x text-secondary"></i></div>
           </div>
         </div>
         <center>
         <div class="h4 font-weight-bold text-dark">
-          <a href="technicianWork.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+          <a href="technicianWork.php" class="btn btn-sm btn-secondary"><i class="fas fa-eye"></i> View</a>
         </div>
         </center>
       </div>  
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-info shadow h-100" style="border-left: 4px solid #36b9cc !important;">
+      <div class="card border-left-primary shadow h-100" style="border-left: 4px solid #0d6efd !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Request</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total; ?></div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Request</div>
+              <div class="h4 mb-0 font-weight-bold text-primary"><?php echo $total; ?></div>
             </div>
-            <div><i class="fas fa-spinner fa-2x text-info"></i></div>
+            <div><i class="fas fa-paper-plane fa-2x text-primary"></i></div>
           </div>
         </div>
         <center>
         <div class="h4 font-weight-bold text-dark">
-          <a href="technicianWork.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+          <a href="technicianWork.php" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> View</a>
         </div>
         </center>
       </div>  
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-info shadow h-100" style="border-left: 4px solid #36b9cc !important;">
+      <div class="card border-left-dark shadow h-100" style="border-left: 4px solid #212529 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Assigned</div>
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Total Assigned</div>
               <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_assigned; ?></div>
             </div>
-            <div><i class="fas fa-spinner fa-2x text-info"></i></div>
+            <div><i class="fas fa-link fa-2x text-dark"></i></div>
           </div>
         </div>
         <center>
         <div class="h4 font-weight-bold text-dark">
-          <a href="technicianWork.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+          <a href="technicianWork.php" class="btn btn-sm btn-dark"><i class="fas fa-eye"></i> View</a>
         </div>
         </center>
       </div>  

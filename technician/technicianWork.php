@@ -93,15 +93,14 @@ if(isset($_REQUEST['startwork'])){
 
 <div class="col-sm-9 col-md-10">
 
-
-  <div class="mx-5 mt-5">
     <!--Table-->
-    <h3 class="title text-center font-weight-bold text-dark mb-4" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-list"></i> <span>ASSIGNED WORK</span> ORDERS</h3>
-    
+    <h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+  ASSIGNED REQUESTS
+  </h4>    
     <!-- Status Filter -->
     <!-- It checks the URL for a ?status= value (e.g. ?status=Completed). If nothing is in the URL, it defaults to 'All'.-->
     <?php $status_filter = isset($_GET['status']) ? $_GET['status'] : 'All'; ?>
-    <div class="d-flex justify-content-center mb-4 flex-wrap align-items-center">
+    <div class="d-flex justify-content-center mb-2 flex-wrap align-items-center">
       <div class="btn-group mb-2 shadow-sm" role="group" aria-label="Status Filter">
          <a href="technicianWork.php?status=All" class="btn btn-all <?php echo ($status_filter == 'All') ? 'btn-primary' : 'btn-outline-primary'; ?>">
           <i class="fas fa-list"></i> All
@@ -252,7 +251,7 @@ if(isset($_REQUEST['startwork'])){
     // else: no 'Work Started' jobs — no modals needed, nothing to render
   ?>
   </div>
-</div>
+
 </div>
 
 <?php

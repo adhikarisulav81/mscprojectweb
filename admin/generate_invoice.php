@@ -61,15 +61,19 @@ if(isset($_POST['id'])){
  </style>
 </head>
 <body>
-    <div class="invoice-box mt-5 mb-5 align-items-center">
-        <table cellpadding="0" cellspacing="0">
+    <div class="invoice-box mt-4 mb-4 align-items-center">
+    <h4 class="title font-weight-bold text-center text-white bg-dark mb-3" style="padding: 7px; border-radius: 5px;">
+    <i class="fas fa-receipt"></i> INVOICE DETAILS
+  </h4>
+        <table>
             <tr class="top">
                 <td colspan="2">
                     <table>
                         <tr>
-                            <td class="title">
+                            <!-- <td class="title">
+                            
                                 <i class="fas fa-receipt"></i> INVOICE
-                            </td>
+                            </td> -->
                             
                             <td>
                             <br><br>
@@ -91,15 +95,15 @@ if(isset($_POST['id'])){
                     <table>
                         <tr>
                             <td>
-                                <strong class="text-secondary">FROM:</strong><br>
-                                <strong>Web Based Smartphone Repair Service</strong><br>
+                                <h4><strong class="text-dark"><u>FROM</u></strong></h4><br>
+                                Web Based Smartphone Repair Service<br>
                                 Admin<br>
-                                <strong>Technician:</strong> <?php echo htmlspecialchars($row['assign_tech']); ?>
+                                Technician: <?php echo htmlspecialchars($row['assign_tech']); ?>
                             </td>
                             
                             <td>
-                                <strong class="text-secondary">TO:</strong><br>
-                                <strong><?php echo htmlspecialchars($row['requester_name']); ?></strong><br>
+                            <h4><strong class="text-dark"><u>TO</u></strong></h4><br>
+                                <?php echo htmlspecialchars($row['requester_name']); ?><br>
                                 <?php echo htmlspecialchars($row['requester_add1']); ?><br>
                                 <?php echo htmlspecialchars($row['requester_email']); ?> / <?php echo htmlspecialchars($row['requester_mobile']); ?>
                             </td>
@@ -109,7 +113,7 @@ if(isset($_POST['id'])){
             </tr>
             
             <tr class="heading">
-                <td>Item / Service Details</td>
+                <td>Request Details</td>
                 <td>Priority</td>
             </tr>
             
@@ -122,17 +126,24 @@ if(isset($_POST['id'])){
                     <span class="badge badge-secondary">Normal</span>
                     <?php } ?>
                 </td>
+
             </tr>
             <tr class="heading">
-                <td colspan="2">Description</td>
+                <td>Description</td>
+                <td>Total Price</td>
+
             </tr>
             <tr class="item last">
-                <td colspan="2"><?php echo nl2br(htmlspecialchars($row['request_desc'])); ?></td>
+                <td><?php echo $row['request_desc']; ?></td>
+                <td class="rounded bg-secondary border border-dark text-white"><b><?php echo $row['service_price']; ?></b></td>
+
             </tr>
         </table>
         
-        <div class="text-center mt-4 d-print-none">
+        <div class="text-center mt-2 d-print-none">
             <button onclick="window.print();" class="btn btn-success btn-md shadow"><i class="fas fa-print"></i> Print Invoice</button>
+            <!-- <a href="../user/myRequests.php" class="btn btn-danger btn-md shadow"><i class="fas fa-times-circle"></i> Close</a> -->
+
         </div>
     </div>
 

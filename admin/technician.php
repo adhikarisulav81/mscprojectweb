@@ -16,7 +16,9 @@ session_start();
 
 <div class="col-sm-9 col-md-10">
   <!--Table-->
-  <h3 class="title text-center font-weight-bold text-dark mb-5 mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-chalkboard-teacher"></i> LIST OF <span>TECHNICIANS</span></h3>
+  <h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+LIST OF TECHNICIANS
+  </h4>  
   <?php
 
   // get every technician from the database with all their details.

@@ -51,19 +51,20 @@ if($result->num_rows > 0){
 
 
 <div class="col-sm-6">
-<h3 class="title text-center font-weight-bold text-dark mb-5 mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-users"></i> ADD <span>NEW ADMIN</span></h3>
-
+<h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+ADD NEW ADMIN
+  </h4> 
   <form action="" method="POST">
     <div class="form-group">
-      <label for="name"><i class="fas fa-user-tie"></i> Name</label>
+      <label for="name" class="font-weight-bold"><i class="fas fa-user-tie"></i> Name</label>
       <input type="text" class="form-control" placeholder="Enter Name" id="name" name="name">
     </div>
     <div class="form-group">
-      <label for="email"><i class="far fa-envelope"></i> Email</label>
+      <label for="email" class="font-weight-bold"><i class="fas fa-envelope"></i> Email</label>
       <input type="email" class="form-control" placeholder="Enter Email" id="email" name="email">
     </div>
     <div class="form-group">
-      <label for="password"><i class="fas fa-lock"></i> Password</label>
+      <label for="password" class="font-weight-bold"><i class="fas fa-lock"></i> Password</label>
       <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
     </div>
     <div class="text-center">

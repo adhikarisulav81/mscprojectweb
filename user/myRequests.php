@@ -17,9 +17,10 @@ if($_SESSION['is_login']){
 
 
 <div class="col-sm-9 col-md-10 mt-5">
-  <h3 class="title text-center font-weight-bold text-dark mb-5" style="font-family: Arial, Helvetica, sans-serif;">
-    <i class="fas fa-list-alt"></i> MY <span>SUBMITTED REQUESTS</span>
-  </h3>
+<h4 class="title text-center font-weight-bold text-white bg-dark mb-3" style="padding: 7px; border-radius: 5px;">
+MY SUBMITTED REQUESTS
+  </h4>
+  
 
   <div class="d-flex justify-content-between mb-4 flex-wrap align-items-center">
     <!-- Reads the URL to see which filter the user clicked. E.g., if the URL is myRequests.php?status=Completed, then $status_filter = 'Completed'. If nothing is in the URL, it defaults to 'All'. -->

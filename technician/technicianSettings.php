@@ -38,23 +38,12 @@ session_start();
  }
 ?>
 
-
-
-
-
-
-
-
-
-<!-- <img class="wave" src="../images/wave.png"> -->
   <div class="col-sm-6">
-    
 
-
-
-<form class="mt-1" method="POST">
-  <h3 class="title text-center font-weight-bold text-dark mt-1" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-lock"></i> CHANGE <span>PASSWORD</span></h3>
-   <div class="form-group">
+<form class="" method="POST">
+<h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+CHANGE TECHNICIAN PASSWORD
+  </h4>    <div class="form-group">
     <label for="inputEmail" class="pl-2 font-weight-bold"><i class="far fa-envelope"></i> Email</label>
     <input type="email" class="form-control" id="inputEmail" value="<?php echo $tEmail ?>" readonly>
    </div>

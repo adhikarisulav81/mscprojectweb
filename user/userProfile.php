@@ -44,14 +44,15 @@ if(isset($_REQUEST['nameupdate'])){
 <div class="col-sm-6">
     <form class="" method="POST">
     <!-- <h3 class="text-center font-weight-bold text-dark mb-5 mt-5" style="font-family: Arial, Helvetica, sans-serif; background-color: #28c38e">Welcome <?php echo $rName ?> !!</h3> -->
-      <h3 class="title text-center font-weight-bold text-dark mt-4" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-user-md"></i> UPDATE USER <span>PROFILE</span></h3>
-
+      <h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-5" style="padding: 7px; border-radius: 5px;">
+  UPDATE USER PROFILE
+  </h4>
       <div class="form-group">
-        <label for="inputEmail" class="pl-2 font-weight-bold"><i class="far fa-envelope"></i> Email</label>
+        <label for="inputEmail" class="pl-2 font-weight-bold"><i class="far fa-envelope"></i> Email<span class="text-danger"> *</span></label>
         <input type="email" class="form-control" id="inputEmail" value=" <?php echo $rEmail ?>" readonly>
       </div>
       <div class="form-group">
-        <label for="inputName" class="pl-2 font-weight-bold"><i class="fas fa-user-tie"></i> Name</label>
+        <label for="inputName" class="pl-2 font-weight-bold"><i class="fas fa-user-tie"></i> Name<span class="text-danger"> *</span></label>
         <input type="text" pattern="\s*\S+.*" class="form-control" id="inputName" name="rName" value="<?php echo $rName ?>">
       </div>
       <button type="submit" class="btn" name="nameupdate" style="background-color: #17A2B8;"><i class="fas fa-user-edit"></i> Update</button>

@@ -15,12 +15,15 @@ if($_SESSION['is_login']){
   
 <div class="col-sm-6">
   <form action="" method="GET" class="d-print-none">
-    <h3 class="title text-center font-weight-bold text-dark mb-4 mt-5" style="font-family: Arial, Helvetica, sans-serif;">
-    <i class="fas fa-truck-moving"></i> CHECK <span>REQUEST STATUS</span></h3>
+  <h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-5" style="padding: 7px; border-radius: 5px;">
+  CHECK REQUEST STATUS
+  </h4>
+    <!-- <h3 class="title text-center font-weight-bold text-dark mb-4 mt-5" style="font-family: Arial, Helvetica, sans-serif;">
+    <i class="fas fa-truck-moving"></i> CHECK <span>REQUEST STATUS</span></h3> -->
     <div class="form-group mr-3">
       <i class="fas fa-portrait"></i>
-      <label for="checkid">Enter Request ID: </label>
-      <input type="text" class="form-control" pattern="\d*" title="Enter Numbers only" placeholder="Enter Request ID" id="checkid" name="checkid" value="<?php if(isset($_GET['checkid'])) { echo htmlspecialchars($_GET['checkid']); } ?>" required>
+      <label for="checkid" class="font-weight-bold">Enter Request ID: <span class="text-danger"> *</span></label>
+      <input type="text" class="form-control" pattern="\d*" title="Enter Only Postive Number" placeholder="Enter Your Request ID" id="checkid" name="checkid" value="<?php if(isset($_GET['checkid'])) { echo htmlspecialchars($_GET['checkid']); } ?>" required>
     </div>
     <button type="submit" name="search" class="btn btn-info"><i class="fas fa-search"></i> Search</button>
   </form>

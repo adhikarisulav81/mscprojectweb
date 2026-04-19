@@ -231,9 +231,12 @@ if(isset($_SESSION['catalog_msg'])){
 }
 ?>
 
-<div class="col-sm-9 col-md-10 mt-5 text-center">
-  <p class="bg-dark text-white p-2">Manage Service Catalog</p>
-  <?php if($msg != '') {echo $msg; } ?>
+<div class="col-sm-9 col-md-10 mt-4 text-center">
+
+<h4 class="title text-center font-weight-bold text-white bg-dark mb-3"
+        style="padding: 7px; border-radius: 5px;">
+        MANAGE CATALOGUE
+    </h4>  <?php if($msg != '') {echo $msg; } ?>
   
   <div class="row">
     <!-- Add Category -->

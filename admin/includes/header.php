@@ -19,7 +19,7 @@
 <body>
  <!-- Top Navbar -->
   <nav class="navbar navbar-dark fixed-top p-0 shadow flex-md-nowrap" style="background-color: #17A2B8;">
-   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="dashboard.php" title="Web Based Mobile Repair Management Application"><i class="fas fa-mobile"></i> Fix Mobile - Admin Portal</a>
+   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="dashboard.php" title="Web Based Mobile Repair Management Application">Fix Mobile - <i class="fas fa-user-shield"></i>  Admin Portal</a>
    <button class="navbar-toggler d-md-none collapsed mr-2" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
    </button>
@@ -46,7 +46,7 @@
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'request') { echo 'active'; } ?>" href="request.php">
-       <i class="fas fa-people-carry"></i>
+       <i class="fas fa-hourglass-half"></i>
         Pending Request
        </a>
       </li>
@@ -67,13 +67,13 @@
      
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'viewadmin') { echo 'active'; } ?>" href="viewadmin.php">
-       <i class="fas fa-user-cog"></i>
+       <i class="fas fa-user-shield"></i>
         Admin
        </a>
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'user') { echo 'active'; } ?>" href="user.php">
-       <i class="fas fa-user-cog"></i>
+       <i class="fas fa-user"></i>
         User
        </a>
       </li>
@@ -86,7 +86,7 @@
 
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'adminSettings') { echo 'active'; } ?>" href="adminSettings.php">
-       <i class="fas fa-user-cog"></i>
+       <i class="fas fa-cog"></i>
         Admin Settings
        </a>
       </li>

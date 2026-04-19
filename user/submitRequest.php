@@ -83,54 +83,53 @@ if(isset($_REQUEST['submitrequest'])){
 <div class="col-sm-9 col-md-10">
 
     <form action="" method="POST" enctype="multipart/form-data">
-        <h3 class="title text-center font-weight-bold text-dark mb-4 mt-5"
-            style="font-family: Arial, Helvetica, sans-serif;">
-            <i class="far fa-share-square"></i> REQUEST FORM
-        </h3>
-
-        <!-- ── Service Selection Dropdowns ── -->
+    <h4 class="title text-center font-weight-bold text-white bg-dark mt-5 mb-3" style="padding: 7px; border-radius: 5px;">
+   REPAIR REQUEST FORM
+  </h4>
+ 
+        <!-- Service Selection Dropdowns -->
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="category"><i class="fas fa-list"></i> Category<span class="text-danger"> *</span></label>
+                <label for="category" class="font-weight-bold"><i class="fas fa-folder"></i> Category<span class="text-danger"> *</span></label>
                 <select class="form-control" id="category" name="category" required>
                     <option value="">Select Category</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="subcategory"><i class="fas fa-list-alt"></i> Subcategory<span class="text-danger"> *</span></label>
+                <label for="subcategory" class="font-weight-bold"><i class="fas fa-list-alt"></i> Subcategory<span class="text-danger"> *</span></label>
                 <select class="form-control" id="subcategory" name="subcategory" required disabled>
                     <option value="">Select Subcategory</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="model"><i class="fas fa-mobile"></i> Model<span class="text-danger"> *</span></label>
+                <label for="model" class="font-weight-bold"><i class="fas fa-mobile"></i> Model<span class="text-danger"> *</span></label>
                 <select class="form-control" id="model" name="model" required disabled>
                     <option value="">Select Model</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="service"><i class="fas fa-cog"></i> Service<span class="text-danger"> *</span></label>
+                <label for="service" class="font-weight-bold"><i class="fas fa-wrench"></i> Service<span class="text-danger"> *</span></label>
                 <select class="form-control" id="service" name="service" required disabled>
                     <option value="">Select Service</option>
                 </select>
             </div>
         </div>
 
-        <!-- ── Pricing & Priority ── -->
+        <!-- Pricing & Priority -->
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="price"><i class="fas fa-rupee-sign"></i> Base Price<span class="text-danger"> *</span></label>
+                <label for="price" class="font-weight-bold"><i class="fas fa-rupee-sign"></i> Base Price<span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="price" name="price" required readonly>
             </div>
             <div class="form-group col-md-4">
-                <label for="priority"><i class="fas fa-exclamation-circle"></i> Priority<span class="text-danger"> *</span></label>
+                <label for="priority" class="font-weight-bold"><i class="fas fa-exclamation-circle"></i> Priority<span class="text-danger"> *</span></label>
                 <select class="form-control" id="priority" name="priority" required>
                     <option value="Normal" selected>Normal</option>
                     <option value="High">High (+10%)</option>
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <label for="final_price"><i class="fas fa-money-bill-wave"></i> Final Price<span class="text-danger"> *</span></label>
+                <label for="final_price" class="font-weight-bold"><i class="fas fa-money-bill-wave"></i> Final Price<span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="final_price" name="final_price" required readonly>
             </div>
         </div>
@@ -140,26 +139,26 @@ if(isset($_REQUEST['submitrequest'])){
 
         <!-- Request Info (auto-filled by JS) -->
         <div class="form-group">
-            <label for="inputRequestInfo"><i class="fas fa-info-circle"></i> Request Info<span class="text-danger"> *</span></label>
+            <label for="inputRequestInfo" class="font-weight-bold"><i class="fas fa-info-circle"></i> Request Info<span class="text-danger"> *</span></label>
             <input type="text" class="form-control" id="inputRequestInfo"
                    placeholder="Auto-filled when service type is selected"
                    name="requestinfo" required readonly>
         </div>
 
         <div class="form-group">
-            <label for="inputRequestDescription"><i class="fas fa-pen-nib"></i> Description<span class="text-danger"> *</span></label>
+            <label for="inputRequestDescription" class="font-weight-bold"><i class="fas fa-pen-nib"></i> Description<span class="text-danger"> *</span></label>
             <textarea class="form-control" id="inputRequestDescription"
                       placeholder="Describe your problem in detail" name="requestdesc" rows="3" required></textarea>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputName"><i class="fas fa-users"></i> Name<span class="text-danger"> *</span></label>
+                <label for="inputName" class="font-weight-bold"><i class="fas fa-users"></i> Name<span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="inputName"
                        name="requestername" value="<?php echo htmlspecialchars($rName); ?>" required readonly>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputAddress"><i class="fas fa-map-marker-alt"></i> Address<span class="text-danger"> *</span></label>
+                <label for="inputAddress" class="font-weight-bold"><i class="fas fa-map-marker-alt"></i> Address<span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="inputAddress"
                        placeholder="Enter Address" name="requesteradd1" required>
             </div>
@@ -167,19 +166,19 @@ if(isset($_REQUEST['submitrequest'])){
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail"><i class="far fa-envelope"></i> Email<span class="text-danger"> *</span></label>
+                <label for="inputEmail" class="font-weight-bold"><i class="far fa-envelope"></i> Email<span class="text-danger"> *</span></label>
                 <input type="email" class="form-control" id="inputEmail"
                        name="requesteremail" value="<?php echo htmlspecialchars($rEmail); ?>" required readonly>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputMobile"><i class="fas fa-mobile"></i> Mobile<span class="text-danger"> *</span></label>
+                <label for="inputMobile" class="font-weight-bold"><i class="fas fa-mobile"></i> Mobile<span class="text-danger"> *</span></label>
 
                 
                 <input type="text" class="form-control" id="inputMobile"
                        placeholder="Enter Mobile Number" pattern="^07\d{9}$" title="e.g. 07123456789" name="requestermobile" required>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputDate"><i class="fas fa-calendar-alt"></i> Requested Date<span class="text-danger"> *</span></label>
+                <label for="inputDate" class="font-weight-bold"><i class="fas fa-calendar-alt"></i> Requested Date<span class="text-danger"> *</span></label>
                 <input type="date" class="form-control" id="inputDate"
                        name="requestdate" min="<?php echo date('Y-m-d'); ?>" required>
                 <!-- Restrict date picker to today only -->

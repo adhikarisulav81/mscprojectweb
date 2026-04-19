@@ -21,7 +21,7 @@
 <body>
  <!-- Top Navbar -->
  <nav class="navbar navbar-dark fixed-top p-0 shadow flex-md-nowrap" style="background-color: #17A2B8;">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="userProfile.php" title="Web Based Mobile Repair Management Application"><i class="fas fa-mobile"></i> Fix Mobile - User Portal</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="userProfile.php" title="Web Based Mobile Repair Management Application">Fix Mobile - <i class="fas fa-user"></i> Customer Portal</a>
   <?php 
     $display_name = '';
     if(isset($_SESSION['rName']) && !empty($_SESSION['rName'])){
@@ -50,38 +50,38 @@
     <ul class="nav flex-column">
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'userDashboard') { echo 'active'; } ?>" href="userDashboard.php">
-       <i class="far fa-share-square"></i>
+       <i class="fas fa-chart-bar"></i>
         User Dashboard
        </a>
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'submitRequest') { echo 'active'; } ?>" href="submitRequest.php">
-       <i class="far fa-share-square"></i>
+       <i class="far fa-clipboard"></i>
         Submit Requests
        </a>
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'myRequests') { echo 'active'; } ?>" href="myRequests.php">
-       <i class="fas fa-list-alt"></i>
+       <i class="fas fa-hand-paper"></i>
         My Requests
        </a>
       </li>
       
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'checkStatus') { echo 'active'; } ?>" href="checkStatus.php">
-       <i class="fas fa-list-alt"></i>
+       <i class="fas fa-clock"></i>
         Track Requests
        </a>
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'userProfile') { echo 'active'; } ?>" href="userProfile.php">
-       <i class="fas fa-list-alt"></i>
+       <i class="fas fa-user"></i>
         User Profile
        </a>
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'userSettings') { echo 'active'; } ?>" href="userSettings.php">
-       <i class="fas fa-list-alt"></i>
+       <i class="fas fa-cog"></i>
         User Settings
        </a>
       </li>

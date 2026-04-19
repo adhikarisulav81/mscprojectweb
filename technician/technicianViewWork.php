@@ -22,8 +22,9 @@ session_start();
 
 
 <div class="col-sm-6 ">
-    <h3 class="title text-center font-weight-bold text-dark mt-5" style="font-family: Arial, Helvetica, sans-serif  ;">
-    <i class="fas fa-briefcase"></i> WORK ORDER <span>DETAILS</span></h3>
+<h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+ASSIGNED REQUEST DETAILS
+  </h4> 
 
  <?php
  if(isset($_REQUEST['view'])){
@@ -125,8 +126,8 @@ session_start();
  </div>
 
  <div class="text-center">
-    <button type="submit" class="btn btn-info d-print-none" onClick='window.print()'><i class="fas fa-print"></i> Print</button>
-    <a href="technicianWork.php" type="submit" class="btn btn-secondary d-print-none"><i class="far fa-times-circle"></i> Close</a>
+    <button type="submit" class="btn btn-success d-print-none" onClick='window.print()'><i class="fas fa-print"></i> Print</button>
+    <a href="technicianWork.php" type="submit" class="btn btn-danger d-print-none"><i class="far fa-times-circle"></i> Close</a>
  </div>
 </div>
 

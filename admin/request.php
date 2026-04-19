@@ -176,12 +176,17 @@ if(isset($_REQUEST['auto_assign'])){
 $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
 ?>
 
-<div class="col-sm-9 col-md-10 mt-5">
+<div class="col-sm-9 col-md-10 mt-4">
 
-    <h3 class="title text-center font-weight-bold text-dark mb-3"
+
+<h4 class="title text-center font-weight-bold text-white bg-dark mb-4"
+        style="padding: 7px; border-radius: 5px;">
+        PENDING REQUESTS
+    </h4>
+    <!-- <h3 class="title text-center font-weight-bold text-dark mb-3"
         style="font-family: Arial, Helvetica, sans-serif;">
         <i class="fas fa-people-carry"></i> PENDING <span>REQUESTS</span>
-    </h3>
+    </h3> -->
 
    
 

@@ -15,9 +15,9 @@ session_start();
 ?>
 
 <div class="col-sm-9 col-md-10 mt-4">
-  <h3 class="title text-center font-weight-bold text-dark mb-4 mt-2" style="font-family: Arial, Helvetica, sans-serif;">
+  <!-- <h3 class="title text-center font-weight-bold text-dark mb-4 mt-2" style="font-family: Arial, Helvetica, sans-serif;">
     <i class="fas fa-chart-bar"></i> ADMIN <span>DASHBOARD</span>
-  </h3>
+  </h3> -->
   <h4 class="text-center text-white bg-dark mb-4"
         style="padding: 7px; border-radius: 5px;">
         Welcome <?php echo $aEmail; ?> !
@@ -104,12 +104,12 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
   <!-- Summary Dashboard -->
   <div class="row mx-3 mb-4 d-print-none">
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #1cc88a !important;">
+      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #198754 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Completed Requests</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_completed; ?></div>
+              <div class="h4 mb-0 font-weight-bold text-success"><?php echo $total_completed; ?></div>
 
 
 
@@ -119,32 +119,32 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
         </div>
 
         <center>
-                  <div class="h4 font-weight-bold text-dark">
-                    <a href="work.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-success">
+                    <a href="work.php" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
 
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-info shadow h-100" style="border-left: 4px solid #36b9cc !important;">
+      <div class="card border-left-secondary shadow h-100" style="border-left: 4px solid #6C757D !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Work Started</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_started; ?></div>
+              <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Work Started</div>
+              <div class="h4 mb-0 font-weight-bold text-secondary"><?php echo $total_started; ?></div>
 
 
             </div>
 
             
-            <div><i class="fas fa-spinner fa-2x text-info"></i></div>
+            <div><i class="fas fa-play fa-2x text-secondary"></i></div>
             
           </div>
         </div>
         <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="work.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-secondary">
+                  <a href="work.php" class="btn btn-sm btn-secondary"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
@@ -152,142 +152,142 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
       
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-warning shadow h-100" style="border-left: 4px solid #f6c23e !important;">
+      <div class="card border-left-warning shadow h-100" style="border-left: 4px solid #ffc107 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Not Assigned</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_unassigned; ?></div>
+              <div class="h4 mb-0 font-weight-bold text-warning"><?php echo $total_unassigned; ?></div>
             </div>
-            <div><i class="fas fa-clock fa-2x text-warning"></i></div>
+            <div><i class="fas fa-question fa-2x text-warning"></i></div>
           </div>
         </div>
 
 
         <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="work.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-warning">
+                  <a href="work.php" class="btn btn-sm btn-warning"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
 
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-danger shadow h-100" style="border-left: 4px solid #f6c23e !important;">
+      <div class="card border-left-danger shadow h-100" style="border-left: 4px solid #dc3545 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">High Requests</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_high; ?></div>
+              <div class="h4 mb-0 font-weight-bold text-danger"><?php echo $total_high; ?></div>
             </div>
-            <div><i class="fas fa-clock fa-2x text-danger"></i></div>
+            <div><i class="fas fa-exclamation-triangle fa-2x text-danger"></i></div>
           </div>
         </div>
 
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="work.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-danger">
+                  <a href="work.php" class="btn btn-sm btn-danger"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #f6c23e !important;">
+      <div class="card border-left-info shadow h-100" style="border-left: 4px solid #0dcaf0 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Categories</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_categories; ?></div>
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Categories</div>
+              <div class="h4 mb-0 font-weight-bold text-info"><?php echo $total_categories; ?></div>
             </div>
-            <div><i class="fas fa-clock fa-2x text-success"></i></div>
+            <div><i class="fas fa-folder fa-2x text-info"></i></div>
           </div>
         </div>
 
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
+                  <div class="h4 font-weight-bold text-info">
                   <a href="manage_catalog.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #f6c23e !important;">
+      <div class="card border-left-info shadow h-100" style="border-left: 4px solid #0dcaf0 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Sub Categories</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_subcategories; ?></div>
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Sub Categories</div>
+              <div class="h4 mb-0 font-weight-bold text-info"><?php echo $total_subcategories; ?></div>
             </div>
-            <div><i class="fas fa-clock fa-2x text-success"></i></div>
+            <div><i class="fas fa-list-alt fa-2x text-info"></i></div>
           </div>
         </div>
 
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
+                  <div class="h4 font-weight-bold text-info">
                   <a href="manage_catalog.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #f6c23e !important;">
+      <div class="card border-left-info shadow h-100" style="border-left: 4px solid #0dcaf0 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Models</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_models; ?></div>
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Models</div>
+              <div class="h4 mb-0 font-weight-bold text-info"><?php echo $total_models; ?></div>
             </div>
-            <div><i class="fas fa-clock fa-2x text-success"></i></div>
+            <div><i class="fas fa-mobile fa-2x text-info"></i></div>
           </div>
         </div>
 
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
+                  <div class="h4 font-weight-bold text-info">
                   <a href="manage_catalog.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #f6c23e !important;">
+      <div class="card border-left-info shadow h-100" style="border-left: 4px solid #0dcaf0 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Services</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_services; ?></div>
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Services</div>
+              <div class="h4 mb-0 font-weight-bold text-info"><?php echo $total_services; ?></div>
             </div>
-            <div><i class="fas fa-clock fa-2x text-success"></i></div>
+            <div><i class="fas fa-cog fa-2x text-info"></i></div>
           </div>
         </div>
 
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
+                  <div class="h4 font-weight-bold text-info">
                   <a href="manage_catalog.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #f6c23e !important;">
+      <div class="card border-left-success shadow h-100" style="border-left: 4px solid #198754 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Normal Requests</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_normal; ?></div>
+              <div class="h4 mb-0 font-weight-bold text-success"><?php echo $total_normal; ?></div>
             </div>
-            <div><i class="fas fa-clock fa-2x text-success"></i></div>
+            <div><i class="fas fa-file fa-2x text-success"></i></div>
           </div>
         </div>
 
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="work.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-success">
+                  <a href="work.php" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
@@ -300,33 +300,33 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
               <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Assigned</div>
               <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_assigned; ?></div>
             </div>
-            <div><i class="fas fa-clock fa-2x text-dark"></i></div>
+            <div><i class="fas fa-link fa-2x text-dark"></i></div>
           </div>
         </div>
 
         
         <center>
                   <div class="h4 font-weight-bold text-dark">
-                  <a href="work.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <a href="work.php" class="btn btn-sm btn-dark"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-danger shadow h-100" style="border-left: 4px solid #e74a3b !important;">
+      <div class="card border-left-danger shadow h-100" style="border-left: 4px solid #dc3545 !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Rejected</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_rejected; ?></div>
+              <div class="h4 mb-0 font-weight-bold text-danger"><?php echo $total_rejected; ?></div>
             </div>
             <div><i class="fas fa-times-circle fa-2x text-danger"></i></div>
           </div>
         </div>
          
       <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="work.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-danger">
+                  <a href="work.php" class="btn btn-sm btn-danger"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
@@ -334,12 +334,12 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
      
     </div>
     <div class="col-xl-3 col-md-6 mb-3">
-      <div class="card border-left-danger shadow h-100" style="border-left: 4px solid #e74a3b !important;">
+      <div class="card border-left-primary shadow h-100" style="border-left: 4px solid #0d6efd !important;">
       <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Sales </div>
-              <div class="h4 mb-0 font-weight-bold text-dark">Rs. <?php echo number_format($sales_data['total_revenue'], 2); ?></div>
+              <div class="h4 mb-0 font-weight-bold text-primary">Rs. <?php echo number_format($sales_data['total_revenue'], 2); ?></div>
               <small class="text-muted"><?php echo $sales_data['total_sales']; ?> transactions</small>
             </div>
             <div><i class="fas fa-rupee-sign fa-2x text-primary"></i></div>
@@ -347,8 +347,8 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
         </div>
          
       <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="#sales_report" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-primary">
+                  <a href="#sales_report" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
@@ -359,61 +359,61 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
 
   <div class="row mx-3 mb-4 d-print-none">
     <div class="col-xl-4 col-md-6 mb-3">
-      <div class="card shadow h-100" style="border-left: 4px solid #4e73df !important;">
+      <div class="card shadow h-100" style="border-left: 4px solid #0d6efd !important;">
       <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Total Requests</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_requests; ?></div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Requests</div>
+              <div class="h4 mb-0 font-weight-bold text-primary"><?php echo $total_requests; ?></div>
             </div>
-            <div><i class="fas fa-user-cog fa-2x text-secondary"></i></div>
+            <div><i class="fas fa-paper-plane fa-2x text-primary"></i></div>
           </div>
         </div>
 
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="viewadmin.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-primary">
+                  <a href="viewadmin.php" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> View</a>
 
                   </div>
                   </center>
       </div>
     </div>
     <div class="col-xl-4 col-md-6 mb-3">
-      <div class="card shadow h-100" style="border-left: 4px solid #5a5c69 !important;">
+      <div class="card shadow h-100" style="border-left: 4px solid #0d6efd !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Total Technicians</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_techs; ?></div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Technicians</div>
+              <div class="h4 mb-0 font-weight-bold text-primary"><?php echo $total_techs; ?></div>
             </div>
-            <div><i class="fas fa-user-cog fa-2x text-secondary"></i></div>
+            <div><i class="fas fa-user-cog fa-2x text-primary"></i></div>
           </div>
         </div>
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="technician.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-primary">
+                  <a href="technician.php" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
     </div>
     <div class="col-xl-4 col-md-6 mb-3">
-      <div class="card shadow h-100" style="border-left: 4px solid #858796 !important;">
+      <div class="card shadow h-100" style="border-left: 4px solid #0d6efd !important;">
         <div class="card-body py-3">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Total Users</div>
-              <div class="h4 mb-0 font-weight-bold text-dark"><?php echo $total_users; ?></div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Users</div>
+              <div class="h4 mb-0 font-weight-bold text-primary"><?php echo $total_users; ?></div>
             </div>
-            <div><i class="fas fa-users fa-2x text-secondary"></i></div>
+            <div><i class="fas fa-users fa-2x text-primary"></i></div>
           </div>
           
         </div>
         
         <center>
-                  <div class="h4 font-weight-bold text-dark">
-                  <a href="user.php" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a>
+                  <div class="h4 font-weight-bold text-primary">
+                  <a href="user.php" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> View</a>
                   </div>
                   </center>
       </div>
@@ -463,9 +463,9 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
             <thead class="thead-light">
             <tr>
                 <th>Req ID</th>
-                <th>Customer</th>
-                <th style="max-width: 150px;">Service Info</th>
-                <th>Technician</th>
+                <th class="no-print">Customer</th>
+                <th style="max-width: 150px;">Request Info</th>
+                <th class="no-print">Technician</th>
                 <th>Assigned Date</th>
                 <th>Base Price</th>
                 <th>Priority Charge</th>
@@ -492,9 +492,9 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
                 $grandTotal += $total_price;
                 echo '<tr>
                     <th scope="row">'.$row["request_id"].'</th>
-                    <td>'.$row["requester_name"].'</td>
-                    <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="'.htmlspecialchars($row["request_info"]).'">'.$row["request_info"].$p_badge.'</td>
-                    <td>'.$row["assign_tech"].'</td>
+                    <td class="no-print">'.$row["requester_name"].'</td>
+                    <td style="max-width: 150px; overflow: hidden;" title="'.htmlspecialchars($row["request_info"]).'">'.$row["request_info"].$p_badge.'</td>
+                    <td class="no-print">'.$row["assign_tech"].'</td>
                     <td>'.$row["assign_date"].'</td>
                     <td>Rs. '.number_format($base_price, 2).'</td>
                     <td class="'.($priority_charge > 0 ? 'text-danger font-weight-bold' : 'text-muted').'">Rs. '.number_format($priority_charge, 2).'</td>
@@ -506,10 +506,17 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
             <tfoot>
                 <tr class="bg-light font-weight-bold">
                     <td colspan="7" class="text-right align-middle">Grand Total Revenue:</td>
-                    <td class="text-success h5 mb-0">Rs. <?php echo number_format($grandTotal, 2); ?></td>
+                    <td> <span class="btn btn-sm btn-secondary text-light font-weight-bold">Rs. <?php echo number_format($grandTotal, 2); ?></span></td>
                 </tr>
             </tfoot>
         </table>
+        <style>
+          @media print {
+  .no-print {
+    display: none !important;
+  }
+}
+        </style>
       </div>
       <?php } else { ?>
         <div class="alert alert-warning text-center"><i class="fas fa-exclamation-triangle"></i> No completed service records found<?php echo isset($_REQUEST['searchsubmit']) ? ' for the selected date range' : ''; ?>.</div>
@@ -517,7 +524,7 @@ $total_requests = ($totalrequest_res && $r = $totalrequest_res->fetch_assoc()) ?
     </div>
     <!-- Print Button -->
   <div class="text-center mb-4 d-print-none">
-    <button class="btn btn-success btn-md shadow" onClick="window.print()"><i class="fas fa-print"></i> Print Full Report</button>
+    <button class="btn btn-success btn-md shadow" onClick="window.print()"><i class="fas fa-print"></i> Print Report</button>
   </div>
   </div>
 

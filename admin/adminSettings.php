@@ -43,17 +43,19 @@ session_start();
 
 <div class="col-sm-6">
   <form class="" method="POST">
-    <h3 class="title text-center font-weight-bold text-dark mt-5 mb-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-lock"></i> CHANGE <span>ADMIN PASSWORD</span></h3>
-    <div class="form-group">
-      <label for="inputEmail"><i class="far fa-envelope"></i> Email</label>
+  <h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+CHANGE ADMIN PASSWORD
+  </h4>  
+      <div class="form-group">
+      <label for="inputEmail" class="font-weight-bold"><i class="fas fa-envelope"></i> Email</label>
       <input type="email" class="form-control" id="inputEmail" value=" <?php echo $aEmail ?>" readonly>
     </div>
     <div class="form-group">
-      <label for="oldPassword"><i class="fas fa-lock"></i> Old Password</label>
+      <label for="oldPassword" class="font-weight-bold"><i class="fas fa-lock"></i> Old Password</label>
       <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword" required>
     </div>
     <div class="form-group">
-      <label for="inputnewpassword"><i class="fas fa-lock"></i> New Password</label>
+      <label for="inputnewpassword" class="font-weight-bold"><i class="fas fa-lock"></i> New Password</label>
       <input type="password" class="form-control" id="inputnewpassword" placeholder="New Password" name="aPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
     </div>
     <button type="submit" class="btn mr-2 mt-4" name="passupdate" style="background-color: #17A2B8;"><i class="fas fa-user-edit"></i> Update</button>

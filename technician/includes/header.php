@@ -25,7 +25,7 @@
 <body>
  <!-- Top Navbar -->
   <nav class="navbar navbar-dark fixed-top p-0 shadow flex-md-nowrap" style="background-color: #17A2B8;">
-   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="technicianWork.php" title="Technician Portal"><i class="fas fa-mobile"></i> Fix Mobile - Technician Portal</a>
+   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="technicianWork.php" title="Technician Portal">Fix Mobile - <i class="fas fa-user-cog"></i> Technician Portal</a>
    <button class="navbar-toggler d-md-none collapsed mr-2" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
    </button>
@@ -48,7 +48,7 @@
       <!-- -->
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'technicianDashboard') { echo 'active'; } ?>" href="technicianDashboard.php">
-       <i class="far fa-share-square"></i>
+       <i class="fas fa-chart-bar"></i>
         Technician Dashboard
        </a>
       </li>
@@ -62,13 +62,13 @@
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'technicianProfile') { echo 'active'; } ?>" href="technicianProfile.php">
-       <i class="far fa-share-square"></i>
+       <i class="fas fa-user-cog"></i>
         Technician Profile
        </a>
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'technicianSettings') { echo 'active'; } ?>" href="technicianSettings.php">
-       <i class="far fa-share-square"></i>
+       <i class="fas fa-cog"></i>
         Technician Settings
        </a>
       </li>

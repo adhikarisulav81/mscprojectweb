@@ -21,10 +21,11 @@ $status_filter   = isset($_GET['status'])   ? $_GET['status']   : 'All';
 
 <div class="col-sm-9 col-md-10">
 
-    <h3 class="title text-center font-weight-bold text-dark mb-3 mt-5"
-        style="font-family: Arial, Helvetica, sans-serif;">
-        <i class="fas fa-briefcase"></i> ALL <span>REQUESTS</span>
-    </h3>
+  
+<h4 class="title text-center font-weight-bold text-white bg-dark mb-3 mt-4"
+        style="padding: 7px; border-radius: 5px;">
+        ALL REQUESTS
+    </h4>
 
     <!-- ── Dual Filter Bar ────────────────────────────────────────────────────── -->
     <div class="mx-5 mb-3 d-flex justify-content-between align-items-center flex-wrap">

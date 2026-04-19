@@ -51,8 +51,9 @@ if($result->num_rows > 0){
 ?>
 
 <div class="col-sm-6">
-  <h3 class="title text-center font-weight-bold text-dark mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-briefcase"></i> UPDATE <span>USER DETAILS</span></h3>
-  
+<h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+UPDATE USER DETAILS
+  </h4>   
   <?php
     if(isset($_REQUEST['view'])){
       $sql = "SELECT * FROM userlogin_tb WHERE id = {$_REQUEST['id']}";
@@ -63,15 +64,15 @@ if($result->num_rows > 0){
   
   <form action="" method="POST">
     <div class="form-group">
-      <label for="id">User ID</label>
+    <label for="id" class="font-weight-bold"><i class="fas fa-tag"></i> ID</label>
       <input type="text" class="form-control" id="id" name="id" readonly value="<?php if(isset($row['id'])) {echo $row['id']; }?>">
     </div>
     <div class="form-group">
-      <label for="name">Name</label>
+    <label for="name" class="font-weight-bold"><i class="fas fa-user-tie"></i> Name</label>
       <input type="text" class="form-control" id="name" name="name" value="<?php if(isset($row['name'])) {echo $row['name']; }?>">
     </div>
     <div class="form-group">
-      <label for="email">Email</label>
+    <label for="email" class="font-weight-bold"><i class="fas fa-envelope"></i> Email</label>
       <input type="text" class="form-control" id="email" name="email" value="<?php if(isset($row['email'])) {echo $row['email']; }?>">
     </div>
 

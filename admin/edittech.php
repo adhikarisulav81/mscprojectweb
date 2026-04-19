@@ -54,8 +54,10 @@ if($result->num_rows > 0){
 
 
 <div class="col-sm-6">
-  <h3 class="title text-center font-weight-bold text-dark mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-briefcase"></i> UPDATE <span>TECHNICIAN DETAILS</span></h3>
-  <?php
+<h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+UPDATE TECHNICIAN DETAILS
+  </h4>  
+    <?php
     if(isset($_REQUEST['view'])){
       $sql = "SELECT * FROM technician_tb WHERE techid = {$_REQUEST['id']}";
       $result = $conn->query($sql);
@@ -64,24 +66,24 @@ if($result->num_rows > 0){
   ?>
   <form action="" method="POST">
     <div class="form-group">
-      <label for="techId">tech ID</label>
+    <label for="id" class="font-weight-bold"><i class="fas fa-tag"></i> ID</label>
       <input type="text" class="form-control" id="techId" name="techId" readonly value="<?php if(isset($row['techid'])) {echo $row['techid']; }?>"
         readonly>
     </div>
     <div class="form-group">
-      <label for="techName">Name</label>
+    <label for="techName" class="font-weight-bold"><i class="fas fa-user-tie"></i> Name</label>
       <input type="text" class="form-control" id="techName" name="techName" value="<?php if(isset($row['techName'])) {echo $row['techName']; }?>">
     </div>
     
     <div class="form-group">
-      <label for="techMobile">Mobile</label>
+    <label for="techMobile" class="font-weight-bold"><i class="fas fa-mobile"></i> Mobile</label>
       <input type="text" class="form-control" id="techMobile"
                        placeholder="Enter Mobile Number" pattern="^07\d{9}$" title="e.g. 07123456789" name="techMobile" value="<?php if(isset($row['techMobile'])) {echo $row['techMobile']; }?>" required>
 
 
     </div>
     <div class="form-group">
-      <label for="techEmail">Email</label>
+    <label for="techEmail" class="font-weight-bold"><i class="fas fa-envelope"></i> Email</label>
       <input type="email" class="form-control" id="techEmail" name="techEmail" value="<?php if(isset($row['techEmail'])) {echo $row['techEmail']; }?>">
     </div>
     <div class="text-center">

@@ -15,8 +15,10 @@ session_start();
 
 <div class="col-sm-9 col-md-10">
   <!--Table-->
-  <h3 class="title text-center font-weight-bold text-dark mt-5 mb-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-users"></i> LIST OF <span>ADMINS</span></h3>
-  <?php
+  <h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+LIST OF ADMINS
+  </h4> 
+    <?php
     $sql = "SELECT * FROM adminlogin_tb";
     $result = $conn->query($sql);
     if($result->num_rows > 0){

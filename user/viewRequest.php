@@ -14,8 +14,9 @@ if($_SESSION['is_login']){
 
 
 <div class="col-sm-6 mt-5">
-    <h3 class="title text-center font-weight-bold text-dark" style="font-family: Arial, Helvetica, sans-serif;">
-    <i class="fas fa-file-invoice"></i> REQUEST <span>DETAILS</span></h3>
+<h4 class="title font-weight-bold text-center text-white bg-dark mb-3" style="padding: 7px; border-radius: 5px;">
+  REQUEST DETAILS
+  </h4>
 
  <?php
  if(isset($_REQUEST['checkid']) || isset($_REQUEST['id'])){

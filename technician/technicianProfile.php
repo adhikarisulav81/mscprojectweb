@@ -48,8 +48,9 @@ if(isset($_REQUEST['nameupdate'])){
 
 <div class="col-sm-6">
 <form class="" method="POST">
-      <h3 class="title text-center font-weight-bold text-dark mt-3" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-user"></i> TECHNICIAN <span>PROFILE</span></h3>
-
+<h4 class="title font-weight-bold text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+TECHNICIAN PROFILE
+  </h4> 
       <div class="form-group">
         <label for="inputEmail" class="pl-2 font-weight-bold"><i class="far fa-envelope"></i> Email</label>
         <input type="email" class="form-control" id="inputEmail" value=" <?php echo $tEmail ?>" readonly>
