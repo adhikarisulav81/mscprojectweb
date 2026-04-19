@@ -16,13 +16,13 @@ session_start();
  }
 
  // Get technician details whose email address matches 
- $sql = "SELECT empName FROM technician_tb WHERE empEmail='$tEmail'";
+ $sql = "SELECT techName FROM technician_tb WHERE techEmail='$tEmail'";
  $result = $conn->query($sql);
  if($result->num_rows == 1){ //num_rows == 1 means exactly one match was found.
   $row = $result->fetch_assoc(); //fetch_assoc() grabs the result as an array.
 
   //The technician's name is saved in $tName for later use.
-  $tName = $row['empName'];
+  $tName = $row['techName'];
  }
 
  //Checks if the "Finalize Work" button was clicked 
@@ -46,7 +46,7 @@ session_start();
     if($conn->query($sql_update) == TRUE){ //Only runs the next steps if this update was successful.
 
       // Rewards the technician by adding 1 point to their rating score
-      // $sql_update_tech = "UPDATE technician_tb SET empRating = empRating + 1 WHERE empName = '$tech_name'";
+      // $sql_update_tech = "UPDATE technician_tb SET techRating = techRating + 1 WHERE techName = '$tech_name'";
       
       // $conn->query($sql_update_tech);
 
@@ -56,12 +56,12 @@ session_start();
       $next_job_res = $conn->query($next_job_sql);
       if($next_job_res->num_rows == 1){
         $next_job_row = $next_job_res->fetch_assoc();
-        sendWorkStartedNotification($next_job_row['requester_name'], $next_job_row['requester_email'], $tech_name, $next_job_row['request_id']);
+        sendTechnicianAvailableNotification($next_job_row['requester_name'], $next_job_row['requester_email'], $tech_name, $next_job_row['request_id']);
       }
 
       // Send completion notification to current user
       sendWorkCompletionToUser($uName, $uEmail, $tName, $rid, $uInfo);
-      $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> Work Marked as Completed & Score Updated! </div>';
+      $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> The Request has been Completed and notified to the customer! </div>';
       echo '<meta http-equiv="refresh" content= "2;URL=?completed" />';
     }
   }
@@ -87,7 +87,7 @@ if(isset($_REQUEST['startwork'])){
     if($conn->query($sql_update) == TRUE){
       // Send notification to user
       sendWorkStartedNotification($uName, $uEmail, $tName, $rid);
-      $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> Work Started! </div>';
+      $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> Work Started and Notified to the Customer! </div>';
       echo '<meta http-equiv="refresh" content= "2;URL=?started" />';
     }
   }

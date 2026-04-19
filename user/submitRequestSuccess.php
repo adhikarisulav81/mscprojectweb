@@ -16,9 +16,13 @@ if($result->num_rows == 1){
  $row = $result->fetch_assoc();
 
  echo "
+
+
  <div class='table-responsive-sm ml-5'>
   <h3 class='title text-center font-weight-bold text-dark mb-5 mt-5' style='font-family: Arial, Helvetica, sans-serif;'>
   <i class='far fa-share-square'></i> REQUEST <span>SUBMITTED</span></h3>
+  <div class='alert alert-dark col-sm-6'>Remember Your <strong class='text-danger'>Request ID</strong> to Track your Request Status<a href='checkStatus.php' class alert> <i>Click here to Track your Request</i></a></div>
+
   <form class='' action='' method='POST' enctype='multipart/form-data'>
   <table class='table'>
   <tbody>
@@ -44,25 +48,13 @@ if($result->num_rows == 1){
     <td>".$row['request_desc']."</td>
    </tr>
 
-   <tr>
-    <td>
-      <form class='d-print-none'>
-        <button type='submit' class='btn btn-info mt-5' name='Print' onClick='window.print()''><i class='fas fa-print'></i> Print</button>
-      </form>
-    </td>
-
-    <td>
-      <form class='d-print-none' action='submitRequest.php'>
-        <button type='submit' class='btn btn-secondary mt-5' name='Back''><i class='fas fa-backward'></i> Back</button>
-      </form>
-    </td>
-
-  </tr>
   </tbody>
- </table> </div>
+ </table> 
+        <a class='btn btn-info mt-5' name='Print' onClick='window.print()''><i class='fas fa-print'></i> Print</a>
+        <a href='submitRequest.php' class='btn btn-secondary mt-5' name='Back''><i class='fas fa-backward'></i> Back</a>
+ </div>
  ";
-
-
+ 
 } else {
   echo "Failed";
 }

@@ -74,6 +74,12 @@
        </a>
       </li>
       <li class="nav-item">
+       <a class="nav-link <?php if(PAGE == 'userProfile') { echo 'active'; } ?>" href="userProfile.php">
+       <i class="fas fa-list-alt"></i>
+        User Profile
+       </a>
+      </li>
+      <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'userSettings') { echo 'active'; } ?>" href="userSettings.php">
        <i class="fas fa-list-alt"></i>
         User Settings

@@ -62,7 +62,7 @@ if(isset($_REQUEST['submitrequest'])){
             // Send email notification to user
             sendRequestReceivedNotification($rName, $rEmail, $genid, $rinfo);
             
-            $msg = '<div class="alert alert-success col-sm-6 ml-5 mt-2" role="alert"> Request Submitted Successfully Your Request ID: ' . $genid .' </div>';
+            $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> Request Submitted Successfully Your Request ID: ' . $genid .' </div>';
 
 
 
@@ -73,7 +73,9 @@ if(isset($_REQUEST['submitrequest'])){
             $_SESSION['myid'] = $genid;
 
             // Redirect to success page
-            echo "<script> location.href='submitRequestSuccess.php'; </script>";
+            // echo "<script> location.href='submitRequestSuccess.php'; </script>";
+            echo "<script>setTimeout(function(){ location.href='submitRequestSuccess.php'; }, 3000);</script>";
+
 
         } else {
             $msg = '<div class="alert alert-danger col-sm-6 ml-5 mt-2" role="alert"> Unable to Submit Your Request </div>';
@@ -90,31 +92,31 @@ if(isset($_REQUEST['submitrequest'])){
     <form action="" method="POST" enctype="multipart/form-data">
         <h3 class="title text-center font-weight-bold text-dark mb-4 mt-5"
             style="font-family: Arial, Helvetica, sans-serif;">
-            <i class="far fa-share-square"></i> SUBMIT <span>REQUEST FORM</span>
+            <i class="far fa-share-square"></i> REQUEST FORM
         </h3>
 
         <!-- ── Service Selection Dropdowns ── -->
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="category"><i class="fas fa-list"></i> Category</label>
+                <label for="category"><i class="fas fa-list"></i> Category<span class="text-danger"> *</span></label>
                 <select class="form-control" id="category" name="category" required>
                     <option value="">Select Category</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="subcategory"><i class="fas fa-list-alt"></i> Subcategory</label>
+                <label for="subcategory"><i class="fas fa-list-alt"></i> Subcategory<span class="text-danger"> *</span></label>
                 <select class="form-control" id="subcategory" name="subcategory" required disabled>
                     <option value="">Select Subcategory</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="model"><i class="fas fa-mobile"></i> Model</label>
+                <label for="model"><i class="fas fa-mobile"></i> Model<span class="text-danger"> *</span></label>
                 <select class="form-control" id="model" name="model" required disabled>
                     <option value="">Select Model</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="service"><i class="fas fa-tools"></i> Service</label>
+                <label for="service"><i class="fas fa-cog"></i> Service<span class="text-danger"> *</span></label>
                 <select class="form-control" id="service" name="service" required disabled>
                     <option value="">Select Service</option>
                 </select>
@@ -124,19 +126,19 @@ if(isset($_REQUEST['submitrequest'])){
         <!-- ── Pricing & Priority ── -->
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="price"><i class="fas fa-rupee-sign"></i> Base Price</label>
-                <input type="text" class="form-control" id="price" name="price" readonly>
+                <label for="price"><i class="fas fa-rupee-sign"></i> Base Price<span class="text-danger"> *</span></label>
+                <input type="text" class="form-control" id="price" name="price" required readonly>
             </div>
             <div class="form-group col-md-4">
-                <label for="priority"><i class="fas fa-exclamation-circle"></i> Priority</label>
+                <label for="priority"><i class="fas fa-exclamation-circle"></i> Priority<span class="text-danger"> *</span></label>
                 <select class="form-control" id="priority" name="priority" required>
                     <option value="Normal" selected>Normal</option>
                     <option value="High">High (+10%)</option>
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <label for="final_price"><i class="fas fa-money-bill-wave"></i> Final Price</label>
-                <input type="text" class="form-control" id="final_price" name="final_price" readonly>
+                <label for="final_price"><i class="fas fa-money-bill-wave"></i> Final Price<span class="text-danger"> *</span></label>
+                <input type="text" class="form-control" id="final_price" name="final_price" required readonly>
             </div>
         </div>
 
@@ -145,49 +147,51 @@ if(isset($_REQUEST['submitrequest'])){
 
         <!-- ── Request Info (auto-filled by JS) ── -->
         <div class="form-group">
-            <label for="inputRequestInfo"><i class="fas fa-info-circle"></i> Request Info</label>
+            <label for="inputRequestInfo"><i class="fas fa-info-circle"></i> Request Info<span class="text-danger"> *</span></label>
             <input type="text" class="form-control" id="inputRequestInfo"
-                   placeholder="Auto-filled when service is selected"
-                   name="requestinfo" readonly>
+                   placeholder="Auto-filled when service type is selected"
+                   name="requestinfo" required readonly>
         </div>
 
         <!-- ── Description ── -->
         <div class="form-group">
-            <label for="inputRequestDescription"><i class="fas fa-pen-nib"></i> Description</label>
+            <label for="inputRequestDescription"><i class="fas fa-pen-nib"></i> Description<span class="text-danger"> *</span></label>
             <textarea class="form-control" id="inputRequestDescription"
-                      placeholder="Describe your problem in detail" name="requestdesc" rows="3"></textarea>
+                      placeholder="Describe your problem in detail" name="requestdesc" rows="3" required></textarea>
         </div>
 
         <!-- ── Name & Address ── -->
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputName"><i class="fas fa-users"></i> Name</label>
+                <label for="inputName"><i class="fas fa-users"></i> Name<span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="inputName"
-                       name="requestername" value="<?php echo htmlspecialchars($rName); ?>" readonly>
+                       name="requestername" value="<?php echo htmlspecialchars($rName); ?>" required readonly>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputAddress"><i class="fas fa-map-marker-alt"></i> Address</label>
+                <label for="inputAddress"><i class="fas fa-map-marker-alt"></i> Address<span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="inputAddress"
-                       placeholder="Enter Address" name="requesteradd1">
+                       placeholder="Enter Address" name="requesteradd1" required>
             </div>
         </div>
 
         <!-- ── Contact & Date ── -->
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail"><i class="far fa-envelope"></i> Email</label>
+                <label for="inputEmail"><i class="far fa-envelope"></i> Email<span class="text-danger"> *</span></label>
                 <input type="email" class="form-control" id="inputEmail"
-                       name="requesteremail" value="<?php echo htmlspecialchars($rEmail); ?>" readonly>
+                       name="requesteremail" value="<?php echo htmlspecialchars($rEmail); ?>" required readonly>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputMobile"><i class="fas fa-mobile"></i> Mobile</label>
+                <label for="inputMobile"><i class="fas fa-mobile"></i> Mobile<span class="text-danger"> *</span></label>
+
+                
                 <input type="text" class="form-control" id="inputMobile"
-                       placeholder="Enter Mobile Number" name="requestermobile">
+                       placeholder="Enter Mobile Number" pattern="^07\d{9}$" title="e.g. 07123456789" name="requestermobile" required>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputDate"><i class="fas fa-calendar-alt"></i> Requested Date</label>
+                <label for="inputDate"><i class="fas fa-calendar-alt"></i> Requested Date<span class="text-danger"> *</span></label>
                 <input type="date" class="form-control" id="inputDate"
-                       name="requestdate" min="<?php echo date('Y-m-d'); ?>">
+                       name="requestdate" min="<?php echo date('Y-m-d'); ?>" required>
                 <!-- Restrict date picker to today only -->
                 <script>
                     const todayDate  = new Date().toISOString().split('T')[0];
@@ -196,6 +200,7 @@ if(isset($_REQUEST['submitrequest'])){
                     reqDateInput.max = todayDate;
                 </script>
             </div>
+            <!-- <p class="text-danger">All fields are required *</p> -->
         </div>
 
         <!-- ── Buttons ── -->

@@ -6,7 +6,7 @@ if(!isset($_SESSION['is_techlogin'])){
   if(isset($_POST['tEmail'])){
     $tEmail = $_POST['tEmail'];
     $tPassword = md5($_POST['tPassword']);
-    $sql = "SELECT empEmail, password FROM technician_tb WHERE empEmail='".$tEmail."' AND password='".$tPassword."' limit 1";
+    $sql = "SELECT techEmail, password FROM technician_tb WHERE techEmail='".$tEmail."' AND password='".$tPassword."' limit 1";
     $result = $conn->query($sql);
     
     if($result->num_rows == 1){     
@@ -48,7 +48,7 @@ if(!isset($_SESSION['is_techlogin'])){
         <h2 class="title"><span>TECHNICIAN</span> LOGIN PANEL</h2>
         <div class="input-div one">
           <div class="i">
-            <i class="fas fa-envelope"></i>
+            <i class="fas fa-envelope"></i> Email
           </div>
           <div class="div">
             <input type="email" class="form-control" placeholder="Enter Your Email Address" name="tEmail" required>
@@ -56,15 +56,15 @@ if(!isset($_SESSION['is_techlogin'])){
         </div>
         <div class="input-div pass">
           <div class="i"> 
-            <i class="fas fa-lock"></i>
+            <i class="fas fa-lock"></i> Password
           </div>
           <div class="div">
             <input type="password" class="form-control" placeholder="Enter Your Password" name="tPassword" required>
           </div>
         </div>
-        <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <button type="submit" class="btn btn-sm btn-primary mt-3 mb-3"><i class="fas fa-sign-in-alt"></i> Login</button>
         <?php if(isset($msg)) {echo $msg; } ?>
-        <a href="../index.php" class="btn text-center" title="Back"><i class="fas fa-backward"></i> Back to Home</a>
+        <a href="../index.php" class="btn btn-sm btn-secondary text-center mt-3 mb-3" title="Back"><i class="fas fa-backward"></i> Back to Home</a>
 
       </form>  
    

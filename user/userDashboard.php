@@ -285,9 +285,9 @@ if(isset($_SESSION['is_login'])){
         if(isset($_REQUEST['searchsubmit'])){
             $startdate = $_REQUEST['startdate'];
             $enddate = $_REQUEST['enddate'];
-            $prod_sql = "SELECT * FROM assignwork_tb WHERE status = 'Completed' AND assign_date BETWEEN '$startdate' AND '$enddate' ORDER BY assign_date DESC";
+            $prod_sql = "SELECT * FROM assignwork_tb WHERE status = 'Completed' AND requester_email='$rEmail' AND assign_date BETWEEN '$startdate' AND '$enddate' ORDER BY assign_date DESC";
         } else {
-            $prod_sql = "SELECT * FROM assignwork_tb WHERE status = 'Completed' ORDER BY assign_date DESC";
+            $prod_sql = "SELECT * FROM assignwork_tb WHERE status = 'Completed' AND requester_email='$rEmail' ORDER BY assign_date DESC";
         }
         
         $prod_result = $conn->query($prod_sql);

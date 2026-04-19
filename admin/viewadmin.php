@@ -39,7 +39,7 @@ session_start();
               echo '<td>
                 <form action="editadmin.php" method="POST" class="d-inline"> 
                   <input type="hidden" name="id" value='. $row["id"] .'>
-                  <button type="submit" class="btn btn-info mr-2 mt-2" name="view" value="View"><i class="fas fa-eye"></i></button>
+                  <button type="submit" class="btn btn-sm btn-primary mr-2 mt-2" name="view" value="View"><i class="fas fa-edit"></i> Edit</button>
                 </form>
               </td>
             </tr>';

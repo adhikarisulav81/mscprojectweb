@@ -20,6 +20,7 @@ if(isset($_REQUEST['reject'])){
 
     // Convert ID to integer for safety — prevents SQL injection
     $requestId = intval($_REQUEST['id']);
+    $rejection_reason = isset($_REQUEST['rejection_reason']) ? trim($_REQUEST['rejection_reason']) : '';
 
     // Fetch the original request details from submitrequest_tb
     // (Rejected requests don't exist in assignwork_tb yet)
@@ -65,83 +66,110 @@ if(isset($_REQUEST['reject'])){
 }
 
 // ─── Auto-Assign Logic ─────────────────────────────────────────────────────────
-// Runs when the Assign button is clicked from the pending requests table
 if(isset($_REQUEST['auto_assign'])){
 
-    $requestId = intval($_REQUEST['id']);
+  $requestId = intval($_REQUEST['id']);
 
-    // Step 1 — Fetch the original request details from submitrequest_tb
-    $req_sql    = "SELECT * FROM submitrequest_tb WHERE request_id = $requestId";
-    $req_result = $conn->query($req_sql);
+  // Step 1 — Fetch the original request details from submitrequest_tb
+  $req_sql    = "SELECT * FROM submitrequest_tb WHERE request_id = $requestId";
+  $req_result = $conn->query($req_sql);
 
-    if($req_result->num_rows == 1){
-        $req_row   = $req_result->fetch_assoc();
-        $rinfo     = $req_row['request_info'];
-        $rdesc     = $req_row['request_desc'];
-        $rname     = $req_row['requester_name'];
-        $radd1     = $req_row['requester_add1'];
-        $remail    = $req_row['requester_email'];
-        $rmobile   = $req_row['requester_mobile'];
-        $rpriority = $req_row['priority'];
-        $rprice    = $req_row['service_price'];
-        $rdate     = date('Y-m-d'); // Assignment date = today
+  if($req_result->num_rows == 1){
+      $req_row   = $req_result->fetch_assoc();
+      $rinfo     = $req_row['request_info'];
+      $rdesc     = $req_row['request_desc'];
+      $rname     = $req_row['requester_name'];
+      $radd1     = $req_row['requester_add1'];
+      $remail    = $req_row['requester_email'];
+      $rmobile   = $req_row['requester_mobile'];
+      $rpriority = $req_row['priority'];
+      $rprice    = $req_row['service_price'];
+      $rdate     = date('Y-m-d');
 
-        // Step 2 — Find the technician with the LOWEST active job count
-        // Active jobs = jobs that are NOT completed and NOT rejected
-        // LEFT JOIN ensures technicians with zero active jobs are included
-        // COUNT only counts rows where status is active (not NULL from LEFT JOIN)
-        $tech_sql = "SELECT t.empName, COUNT(CASE WHEN a.status NOT IN ('Completed', 'Rejected') THEN 1 END) AS active_count
-                     FROM technician_tb t
-                     LEFT JOIN assignwork_tb a ON t.empName = a.assign_tech
-                     GROUP BY t.empName
-                     ORDER BY active_count ASC
-                     LIMIT 1";
-            //          $tech_sql = "SELECT t.empName, t.empRating,
-            //          COUNT(CASE WHEN a.status NOT IN ('Completed', 'Rejected') THEN 1 END) AS active_count
-            //   FROM technician_tb t
-            //   LEFT JOIN assignwork_tb a ON t.empName = a.assign_tech
-            //   GROUP BY t.empName, t.empRating
-            //   ORDER BY active_count ASC, t.empRating DESC
-            //   LIMIT 1";
-        // ORDER BY: first sort by fewest active jobs (ASC), then by highest rating (DESC) as a tiebreaker
-        // LIMIT 1: pick only the single best technician
+      // Step 2 — Find technician with LOWEST active job count
+      // techEmail is now included so we can notify them directly
+      $tech_sql = "SELECT t.techName, t.techEmail,
+                          COUNT(CASE WHEN a.status NOT IN ('Completed', 'Rejected') THEN 1 END) AS active_count
+                   FROM technician_tb t
+                   LEFT JOIN assignwork_tb a ON t.techName = a.assign_tech
+                   GROUP BY t.techName, t.techEmail
+                   ORDER BY active_count ASC
+                   LIMIT 1";
 
-        $tech_result = $conn->query($tech_sql);
+      $tech_result = $conn->query($tech_sql);
 
-        if($tech_result->num_rows == 1){
-            $tech_row      = $tech_result->fetch_assoc();
-            $assigned_tech = $tech_row['empName'];
-            // $tech_rating   = $tech_row['empRating'];
-            $tech_active   = $tech_row['active_count'];
+      if($tech_result->num_rows == 1){
+          $tech_row      = $tech_result->fetch_assoc();
+          $assigned_tech = $tech_row['techName'];
+          $tech_email    = $tech_row['techEmail'];  // ← was missing entirely before
+          $tech_active   = $tech_row['active_count'];
 
-            // Step 3 — Insert the assignment into assignwork_tb
-            $insert_sql = "INSERT INTO assignwork_tb 
-                            (request_id, request_info, request_desc, requester_name, requester_add1,
-                             requester_email, requester_mobile, assign_tech, assign_date, status,
-                             priority, service_price) 
-                           VALUES 
-                            ('$requestId', '$rinfo', '$rdesc', '$rname', '$radd1',
-                             '$remail', '$rmobile', '$assigned_tech', '$rdate', 'Assigned',
-                             '$rpriority', '$rprice')";
+          // Step 3 — Insert the assignment into assignwork_tb
+          $insert_sql = "INSERT INTO assignwork_tb 
+                          (request_id, request_info, request_desc, requester_name, requester_add1,
+                           requester_email, requester_mobile, assign_tech, assign_date, status,
+                           priority, service_price) 
+                         VALUES 
+                          ('$requestId', '$rinfo', '$rdesc', '$rname', '$radd1',
+                           '$remail', '$rmobile', '$assigned_tech', '$rdate', 'Assigned',
+                           '$rpriority', '$rprice')";
 
-            if($conn->query($insert_sql) === TRUE){
-                $successMsg = "Request #$requestId has been automatically assigned to 
-                               <strong>$assigned_tech</strong> 
-                               (Active Jobs: $tech_active).<a href='work.php'> Click Here to View</a>";
-                            //    (Active Jobs: $tech_active, Rating: $tech_rating).<a href='work.php'> Click Here to View or Edit the Request</a>";
-                               
-            } else {
-                $errorMsg = "Assignment failed. Error: " . $conn->error;
-            }
+          if($conn->query($insert_sql) === TRUE){
 
-        } else {
-            // No technicians exist in the system at all
-            $errorMsg = "No technicians available. Please add technicians first.";
-        }
+              $successMsg = "Request #$requestId has been automatically assigned to 
+                             <strong>$assigned_tech</strong> 
+                             (Active Jobs: $tech_active). <a href='work.php'>Click Here to View</a>";
 
-    } else {
-        $errorMsg = "Request not found.";
-    }
+              // Step 4 — Notify technician of their new assigned job
+              sendWorkAssignedToTechnician(
+                  $assigned_tech,
+                  $tech_email,
+                  $rname,
+                  $requestId,
+                  $rinfo,
+                  $rdate
+              );
+
+              // Step 5 — Check technician workload EXCLUDING the job just inserted
+              // If they have other active jobs already, warn the customer
+              $workload_sql = "SELECT COUNT(*) as active_jobs 
+                               FROM assignwork_tb 
+                               WHERE assign_tech = '$assigned_tech' 
+                               AND status NOT IN ('Completed', 'Rejected') 
+                               AND request_id != '$requestId'";
+              $workload_res = $conn->query($workload_sql);
+              $workload_row = $workload_res->fetch_assoc();
+
+              if($workload_row['active_jobs'] > 0){
+                  // Technician has other active jobs — send busy notification to customer
+                  sendTechnicianBusyNotification(
+                      $rname,
+                      $remail,
+                      $assigned_tech,
+                      $requestId
+                  );
+              } else {
+                  // Technician is free — send standard assignment confirmation to customer
+                  sendWorkAssignedToUser(
+                      $rname,
+                      $remail,
+                      $assigned_tech,
+                      $requestId,
+                      $rdesc
+                  );
+              }
+
+          } else {
+              $errorMsg = "Assignment failed. Error: " . $conn->error;
+          }
+
+      } else {
+          $errorMsg = "No technicians available. Please add technicians first.";
+      }
+
+  } else {
+      $errorMsg = "Request not found.";
+  }
 }
 
 // ─── Priority Filter ───────────────────────────────────────────────────────────

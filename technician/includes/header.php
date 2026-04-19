@@ -61,6 +61,12 @@
        </a>
       </li>
       <li class="nav-item">
+       <a class="nav-link <?php if(PAGE == 'technicianProfile') { echo 'active'; } ?>" href="technicianProfile.php">
+       <i class="far fa-share-square"></i>
+        Technician Profile
+       </a>
+      </li>
+      <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'technicianSettings') { echo 'active'; } ?>" href="technicianSettings.php">
        <i class="far fa-share-square"></i>
         Technician Settings

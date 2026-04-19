@@ -153,7 +153,12 @@ if(isset($_POST['update_service'])){
 // Handle Form Submissions (POST-Redirect-GET Pattern)
 if(isset($_POST['add_category'])){
     $cat_name = $_REQUEST['category_name'];
+    $check = $conn->query("SELECT category_id FROM categories_tb WHERE LOWER(category_name) = LOWER('$cat_name')");
+    if($check->num_rows > 0){
+      $_SESSION['catalog_msg'] = '<div class="alert alert-warning col-sm-6 ml-5 mt-2">Category already exists. Add a new category.</div>';
+  } else {
     $sql = "INSERT INTO categories_tb (category_name) VALUES ('$cat_name')";
+
     if($conn->query($sql) === TRUE){
         $_SESSION['catalog_msg'] = '<div class="alert alert-success col-sm-6 ml-5 mt-2">Category Added Successfully</div>';
     } else {
@@ -162,10 +167,15 @@ if(isset($_POST['add_category'])){
     header("Location: manage_catalog.php");
     exit();
 }
+}
 
 if(isset($_POST['add_subcategory'])){
     $cat_id = $_REQUEST['category_id'];
     $sub_name = $_REQUEST['subcategory_name'];
+    $check = $conn->query("SELECT sub_id, category_id, sub_name FROM subcategories_tb WHERE category_id = $cat_id AND LOWER(sub_name) = LOWER('$sub_name')");
+    if($check->num_rows > 0){
+      $_SESSION['catalog_msg'] = '<div class="alert alert-warning col-sm-6 ml-5 mt-2">Sub Category already exists. Add a new subcategory.</div>';
+  } else {
     $sql = "INSERT INTO subcategories_tb (category_id, sub_name) VALUES ('$cat_id', '$sub_name')";
     if($conn->query($sql) === TRUE){
         $_SESSION['catalog_msg'] = '<div class="alert alert-success col-sm-6 ml-5 mt-2">Subcategory Added Successfully</div>';
@@ -175,10 +185,15 @@ if(isset($_POST['add_subcategory'])){
     header("Location: manage_catalog.php");
     exit();
 }
+}
 
 if(isset($_POST['add_model'])){
     $sub_id = $_REQUEST['subcategory_id'];
     $model_name = $_REQUEST['model_name'];
+    $check = $conn->query("SELECT model_id,sub_id, model_name FROM models_tb WHERE sub_id = $sub_id AND LOWER(model_name) = LOWER('$model_name')");
+    if($check->num_rows > 0){
+      $_SESSION['catalog_msg'] = '<div class="alert alert-warning col-sm-6 ml-5 mt-2">Model already exists. Add a new model.</div>';
+  } else {
     $sql = "INSERT INTO models_tb (sub_id, model_name) VALUES ('$sub_id', '$model_name')";
     if($conn->query($sql) === TRUE){
         $_SESSION['catalog_msg'] = '<div class="alert alert-success col-sm-6 ml-5 mt-2">Model Added Successfully</div>';
@@ -188,11 +203,16 @@ if(isset($_POST['add_model'])){
     header("Location: manage_catalog.php");
     exit();
 }
+}
 
 if(isset($_POST['add_service'])){
     $model_id = $_REQUEST['model_id'];
     $service_name = $_REQUEST['service_name'];
     $service_price = $_REQUEST['service_price'];
+    $check = $conn->query("SELECT service_id, model_id, service_name, service_price FROM services_tb WHERE model_id = $model_id AND LOWER(service_name) = LOWER('$service_name')");
+    if($check->num_rows > 0){
+      $_SESSION['catalog_msg'] = '<div class="alert alert-warning col-sm-6 ml-5 mt-2">Service Name already exists. Add a new service.</div>';
+  } else {
     $sql = "INSERT INTO services_tb (model_id, service_name, service_price) VALUES ('$model_id', '$service_name', '$service_price')";
     if($conn->query($sql) === TRUE){
         $_SESSION['catalog_msg'] = '<div class="alert alert-success col-sm-6 ml-5 mt-2">Service Added Successfully</div>';
@@ -202,7 +222,7 @@ if(isset($_POST['add_service'])){
     header("Location: manage_catalog.php");
     exit();
 }
-
+}
 // Display session message and clear it. Display CRUD message
 $msg = '';
 if(isset($_SESSION['catalog_msg'])){

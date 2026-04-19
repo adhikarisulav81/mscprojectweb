@@ -22,6 +22,20 @@ session_start();
     $rname = $_REQUEST['name'];
     $remail = $_REQUEST['email'];
 
+
+    //Duplicate email check before inserting
+$sql = "SELECT id FROM userlogin_tb WHERE email='".$_POST['email']."'";
+$result = $conn->query($sql);
+
+if($result->num_rows > 0){
+  // Email already exists — block the insert
+  $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert">
+     <i class="fas fa-exclamation-circle"></i> An user with this email already exists. Please use a different email.
+   </div>';
+  $result->close();
+} else {
+ $result->close();
+
     $sql = "UPDATE userlogin_tb SET id = '$rid', name = '$rname', email = '$remail' WHERE id = '$rid'";
     if($conn->query($sql) == TRUE){
      // below msg display on form submit success
@@ -32,6 +46,7 @@ session_start();
      $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert"> Unable to Update </div>';
     }
   }
+}
 }
 ?>
 

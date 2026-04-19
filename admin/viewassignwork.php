@@ -50,6 +50,7 @@ session_start();
            $row = $result->fetch_assoc();
            $row['assign_date'] = 'Not Assigned Yet'; 
            $row['assign_tech'] = 'Request Not Assigned to Technician';
+           $row['status'] = $row['status'] ?? 'Not Assigned';
        } else {
          //  If the request ID doesn't exist in either table, shows an error message
            echo '<div class="alert alert-danger mx-5 mt-4">Record not found or access denied.</div>';
@@ -156,7 +157,7 @@ session_start();
 
  <div class="text-center">
     <button type="submit" class="btn btn-info d-print-none" onClick='window.print()'><i class="fas fa-print"></i> Print</button>
-    <a href="work.php" type="submit" class="btn btn-secondary d-print-none"><i class="far fa-times-circle"></i> Close</a>
+    <a href="request.php" type="submit" class="btn btn-secondary d-print-none"><i class="far fa-times-circle"></i> Close</a>
  </div>
 </div>
 

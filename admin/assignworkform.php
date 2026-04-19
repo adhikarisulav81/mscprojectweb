@@ -55,11 +55,20 @@ if(isset($_REQUEST['assign'])){
         $rmobile     = $_REQUEST['requestermobile'];
         $rassigntech = $_REQUEST['assigntech'];
         $rdate       = $_REQUEST['inputdate'];
-        $status      = isset($_REQUEST['status'])       ? $_REQUEST['status']       : 'Assigned';
+        $status      = 'Assigned';
+
         // $ddate       = isset($_REQUEST['deliveryDate']) ? $_REQUEST['deliveryDate'] : NULL;
         $rpriority   = $_REQUEST['priority'];
 
-        // Fetch price from DB — never trust form input for price
+
+// Fetch technician email from DB using selected name ──
+$tech_email_sql = "SELECT techEmail FROM technician_tb WHERE techName = '$rassigntech'";
+$tech_email_res = $conn->query($tech_email_sql);
+$tech_email_row = $tech_email_res->fetch_assoc();
+$tech_email     = $tech_email_row['techEmail'];
+
+
+        // Fetch price from DB for exact do not rely on form input for price
         $price_sql     = "SELECT service_price FROM submitrequest_tb WHERE request_id = '$rid'";
         $price_res     = $conn->query($price_sql);
         $price_row     = $price_res->fetch_assoc();
@@ -76,12 +85,19 @@ if(isset($_REQUEST['assign'])){
 
         if($conn->query($sql) == TRUE){
             $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> Work Assigned Successfully </div>';
-            echo "<script>setTimeout(function(){ location.href='work.php'; }, 2000);</script>";
+            // echo "<script>setTimeout(function(){ location.href='work.php'; }, 2000);</script>";
             sendWorkAssignedToTechnician($rassigntech, $tech_email, $rname, $rid, $rinfo, $rdate);
 
           // Check technician workload and send appropriate user notification
-          $workload_sql = "SELECT COUNT(*) as active_jobs FROM assignwork_tb WHERE assign_tech = '$rassigntech' AND status != 'Completed' AND request_id != '$rid'";
-          $workload_res = $conn->query($workload_sql);
+        //   $workload_sql = "SELECT COUNT(*) as active_jobs FROM assignwork_tb WHERE assign_tech = '$rassigntech' AND status != 'Completed' AND request_id != '$rid'";
+
+        $workload_sql = "SELECT COUNT(*) as active_jobs 
+        FROM assignwork_tb 
+        WHERE assign_tech = '$rassigntech' 
+        AND status NOT IN ('Completed', 'Rejected') 
+        AND request_id != '$rid'";
+        $workload_res = $conn->query($workload_sql);
+
           $workload_row = $workload_res->fetch_assoc();
           
           if($workload_row['active_jobs'] > 0){
@@ -91,6 +107,7 @@ if(isset($_REQUEST['assign'])){
             // Send Work Assigned Notification
             sendWorkAssignedToUser($rname, $remail, $rassigntech, $rid, $rdesc);
           }
+          echo "<script>setTimeout(function(){ location.href='work.php'; }, 3000);</script>";
         } else {
             $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert"> Unable to Assign Work </div>';
         }
@@ -160,8 +177,11 @@ if(isset($_REQUEST['assign'])){
             </div>
             <div class="form-group col-md-4">
                 <label for="requestermobile"><i class="fas fa-mobile"></i> Mobile</label>
+
+
+               
                 <input type="text" class="form-control" id="requestermobile" name="requestermobile"
-                       pattern="[9][0-9]{9}" title="Start with 9, must be 10 digits"
+                pattern="^07\d{9}$" title="e.g. 07123456789"
                        value="<?php if(isset($row['requester_mobile'])) { echo $row['requester_mobile']; } ?>"
                        onkeypress="isInputNumber(event)" readonly>
             </div>
@@ -177,36 +197,37 @@ if(isset($_REQUEST['assign'])){
                 <select class="form-control" id="assigntech" name="assigntech">
                     <option value="">Select Technician</option>
                     <?php
-                    // $sql_tech = "SELECT t.empName, t.empRating,
+                    // $sql_tech = "SELECT t.techName, t.techRating,
                     //                     COUNT(CASE WHEN a.status NOT IN ('Completed','Rejected') THEN 1 END) AS active_count
                     //              FROM technician_tb t
-                    //              LEFT JOIN assignwork_tb a ON t.empName = a.assign_tech
-                    //              GROUP BY t.empName, t.empRating
-                    //              ORDER BY active_count ASC, t.empRating DESC";
-                    $sql_tech = "SELECT t.empName, t.empEmail,
+                    //              LEFT JOIN assignwork_tb a ON t.techName = a.assign_tech
+                    //              GROUP BY t.techName, t.techRating
+                    //              ORDER BY active_count ASC, t.techRating DESC";
+                    $sql_tech = "SELECT t.techName, t.techEmail,
                                         COUNT(CASE WHEN a.status NOT IN ('Completed','Rejected') THEN 1 END) AS active_count
                                  FROM technician_tb t
-                                 LEFT JOIN assignwork_tb a ON t.empName = a.assign_tech
-                                 GROUP BY t.empName, t.empEmail
+                                 LEFT JOIN assignwork_tb a ON t.techName = a.assign_tech
+                                 GROUP BY t.techName, t.techEmail
                                  ORDER BY active_count ASC";
 
                     $result_tech = $conn->query($sql_tech);
                     if($result_tech->num_rows > 0){
                         while($row_tech = $result_tech->fetch_assoc()){
-                            $tech_name    = $row_tech["empName"];
-                            $tech_email    = $row_tech["empEmail"];
-
-                            // $rating       = $row_tech["empRating"];
+                            $tech_name    = $row_tech["techName"];
                             $active_count = $row_tech["active_count"];
+
+                            // $tech_email    = $row_tech["techEmail"];
+
+                            // $rating       = $row_tech["techRating"];
 
                             $active_label = ($active_count > 0)
                                 ? " [" . $active_count . " active jobs]"
                                 : " [Available]";
 
-                            if($rating > 4)       { $label = " (Highly Rated - " .(int)$rating." works) [Very Busy]"; }
-                            elseif($rating >= 2)  { $label = " (Medium Rated - " .(int)$rating." works) [Moderate]";  }
-                            elseif($rating > 0)   { $label = " (Low Rated - "    .(int)$rating." works) [Less Busy]"; }
-                            else                  { $label = " (No Rating) [Available]"; }
+                            // if($rating > 4)       { $label = " (Highly Rated - " .(int)$rating." works) [Very Busy]"; }
+                            // elseif($rating >= 2)  { $label = " (Medium Rated - " .(int)$rating." works) [Moderate]";  }
+                            // elseif($rating > 0)   { $label = " (Low Rated - "    .(int)$rating." works) [Less Busy]"; }
+                            // else                  { $label = " (No Rating) [Available]"; }
 
                             echo '<option value="' . $tech_name . '">'
                                 . $tech_name . $label . $active_label . '</option>';

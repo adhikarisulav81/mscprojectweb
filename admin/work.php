@@ -1,5 +1,5 @@
 <?php
-define('TITLE', 'Assigned Work');
+define('TITLE', 'Work Order');
 define('PAGE', 'work');
 include('includes/header.php'); 
 include('../dbConnection.php');
@@ -24,7 +24,7 @@ $status_filter   = isset($_GET['status'])   ? $_GET['status']   : 'All';
 
     <h3 class="title text-center font-weight-bold text-dark mb-3 mt-5"
         style="font-family: Arial, Helvetica, sans-serif;">
-        <i class="fas fa-briefcase"></i> ASSIGNED <span>WORK</span>
+        <i class="fas fa-briefcase"></i> ALL <span>REQUESTS</span>
     </h3>
 
     <!-- ── Dual Filter Bar ────────────────────────────────────────────────────── -->

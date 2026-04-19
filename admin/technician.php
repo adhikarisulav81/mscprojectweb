@@ -29,7 +29,7 @@ session_start();
       echo '<table id="dataTableID" class="table">
         <thead>
         <tr>
-          <th scope="col">Emp ID</th>
+          <th scope="col">Technician ID</th>
           <th scope="col">Name</th>
           <th scope="col">Mobile</th>
           <th scope="col">Email</th>
@@ -42,19 +42,19 @@ session_start();
         // Loops through every technician one at a time. Each loop gives one technician's data in the $row array.
         while($row = $result->fetch_assoc()){
             echo '<tr>';
-            echo '<th scope="row">'.$row["empid"].'.'.'</th>';
-            echo '<td>'. $row["empName"].'</td>';
-            echo '<td>'.$row["empMobile"].'</td>';
-            echo '<td>'.$row["empEmail"].'</td>';
+            echo '<th scope="row">'.$row["techid"].'.'.'</th>';
+            echo '<td>'. $row["techName"].'</td>';
+            echo '<td>'.$row["techMobile"].'</td>';
+            echo '<td>'.$row["techEmail"].'</td>';
 
             // If rating is greater than 0, show the rating number obtained by a technician (1 complete work =1 rating), if rating is 0 just show 0.
-            // $rating_display = ($row["empRating"] > 0) ? (int)$row["empRating"] . ' <i class="fas fa-star text-warning"></i>' : '0 <i class="fas fa-star text-warning"></i>';
+            // $rating_display = ($row["techRating"] > 0) ? (int)$row["techRating"] . ' <i class="fas fa-star text-warning"></i>' : '0 <i class="fas fa-star text-warning"></i>';
             // echo '<td>'.$rating_display.'</td>';
 
 
             echo '<td>
-              <form action="editemp.php" method="POST"> 
-                <input type="hidden" name="id" value='. $row["empid"] .'>
+              <form action="edittech.php" method="POST"> 
+                <input type="hidden" name="id" value='. $row["techid"] .'>
                 <button type="submit" class="btn btn-primary btn-sm mb-2" name="view" title="Edit Technician"><i class="fas fa-edit"></i> Edit</button>
               </form>';              
               echo '
@@ -73,7 +73,7 @@ session_start();
   </div>
 </div>
 <div class="text-center">
-  <a href="insertemp.php" class="btn fixed-bottom" title="Add Technician" style="background-color: #138496;"><i class="fas fa-plus fa"></i> Add New Technician</a>
+  <a href="inserttech.php" class="btn fixed-bottom" title="Add Technician" style="background-color: #138496;"><i class="fas fa-plus fa"></i> Add New Technician</a>
   </div>
 </div>
 

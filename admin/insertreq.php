@@ -20,19 +20,37 @@ if(isset($_REQUEST['reqsubmit'])){
    // Assigning User Values to Variable
    $rname = $_REQUEST['name'];
    $rEmail = $_REQUEST['email'];
-   $rPassword = md5($_POST['password']);;
+   $rPassword = md5($_POST['password']);
+
+
+   //Duplicate email check before inserting
+$sql = "SELECT id FROM userlogin_tb WHERE email='".$_POST['email']."'";
+$result = $conn->query($sql);
+
+if($result->num_rows > 0){
+  // Email already exists — block the insert
+  $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert">
+     <i class="fas fa-exclamation-circle"></i> An user with this email already exists. Please use a different email.
+   </div>';
+  $result->close();
+} else {
+ $result->close();
+
+
    $sql = "INSERT INTO userlogin_tb (name, email, password) VALUES ('$rname', '$rEmail', '$rPassword')";
    if($conn->query($sql) == TRUE){
     // Send welcome email with login credentials to the new user
      sendNewUserAccountEmail($rname, $rEmail, $_POST['password']);
      // below msg display on form submit success
-    $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> Added Successfully </div>';
-    echo "<script> location.href='user.php'; </script>";
+    $msg = '<div class="alert alert-success col-sm-6 mt-2" role="alert"> New User Added Successfully and Credentials Sent to their Email.</div>';
+    // Redirect after 3 seconds
+    echo "<script>setTimeout(function(){ location.href='user.php'; }, 5000);</script>";
    } else {
     // below msg display on form submit failed
-    $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert"> Unable to Add </div>';
+    $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert"> Unable to Add User</div>';
    }
  }
+}
 }
 ?>
 

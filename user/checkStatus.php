@@ -15,12 +15,12 @@ if($_SESSION['is_login']){
   
 <div class="col-sm-6">
   <form action="" method="GET" class="d-print-none">
-    <h3 class="title text-center font-weight-bold text-dark mb-5 mt-5" style="font-family: Arial, Helvetica, sans-serif;">
+    <h3 class="title text-center font-weight-bold text-dark mb-4 mt-5" style="font-family: Arial, Helvetica, sans-serif;">
     <i class="fas fa-truck-moving"></i> CHECK <span>REQUEST STATUS</span></h3>
     <div class="form-group mr-3">
       <i class="fas fa-portrait"></i>
       <label for="checkid">Enter Request ID: </label>
-      <input type="text" class="form-control" placeholder="Enter Request ID" id="checkid" name="checkid" value="<?php if(isset($_GET['checkid'])) { echo htmlspecialchars($_GET['checkid']); } ?>" onkeypress="isInputNumber(event)" required>
+      <input type="text" class="form-control" pattern="\d*" title="Enter Numbers only" placeholder="Enter Request ID" id="checkid" name="checkid" value="<?php if(isset($_GET['checkid'])) { echo htmlspecialchars($_GET['checkid']); } ?>" required>
     </div>
     <button type="submit" name="search" class="btn btn-info"><i class="fas fa-search"></i> Search</button>
   </form>
@@ -46,7 +46,7 @@ if($_SESSION['is_login']){
       
       // Ownership check
       if($row['requester_email'] !== $rEmail){
-        echo '<div class="alert alert-danger mt-4" role="alert">
+        echo '<div class="alert alert-danger mt-2" role="alert">
                 <i class="fas fa-exclamation-triangle"></i> Request ID does not match to that user.
               </div>';
       } else {
@@ -92,8 +92,8 @@ if($_SESSION['is_login']){
     ?>
 
     <!-- Modern Status Card -->
-    <div class="card mt-5 shadow-lg border-0 rounded-lg">
-      <div class="card-header text-white bg-info p-4 d-flex justify-content-between align-items-center">
+    <div class="card mt-2 shadow-lg border-0 rounded-lg">
+      <div class="card-header text-white bg-info p-3 d-flex justify-content-between align-items-center">
         <h5 class="mb-0"><i class="fas fa-clipboard-list mr-2"></i> Request #<?php echo htmlspecialchars($checkid); ?></h5>
         <?php
 // Pick badge colour based on current status
@@ -111,11 +111,11 @@ else                             { $badge_class = "badge-primary";   }
       <div class="card-body p-5">
         
         <!-- Status Stepper -->
-        <div class="status-stepper mb-5">
+        <div class="status-stepper mb">
           <div class="progress" style="height: 15px;">
 <!-- Dynamic $progress_color variable (for dynamically changing the progress bar color according to the status) -->
 <div class="progress-bar <?php echo $progress_color; ?>" role="progressbar" style="width: <?php echo $progress; ?>%;" aria-valuenow="<?php echo $progress; ?>" aria-valuemin="0" aria-valuemax="100"></div>          </div>
-          <div class="d-flex justify-content-between mt-3 text-center step-labels">
+          <div class="d-flex justify-content-between mt-1 text-center step-labels">
             <div class="step-item <?php echo $steps['Submitted']; ?>">
               <div class="step-icon"><i class="fas fa-file-invoice"></i></div>
               <small class="font-weight-bold">Submitted</small>
@@ -231,7 +231,7 @@ else                             { $badge_class = "badge-primary";   }
       }
       $stmt->close();
     } else {
-      echo '<div class="alert alert-danger mt-4" role="alert">
+      echo '<div class="alert alert-danger mt-2" role="alert">
               <i class="fas fa-exclamation-circle"></i> No request submitted with this ID. Provide the valid Request ID.
             </div>';
       $stmt->close();
@@ -275,14 +275,14 @@ else                             { $badge_class = "badge-primary";   }
 </div>
 
 <!-- Only Number for input fields -->
-<script>
+<!-- <script>
   function isInputNumber(evt) {
     var ch = String.fromCharCode(evt.which);
     if (!(/[0-9]/.test(ch))) {
       evt.preventDefault();
     }
   }
-</script>
+</script> -->
 
 <?php
 include('includes/footer.php'); 

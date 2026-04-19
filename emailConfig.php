@@ -13,7 +13,7 @@ define('SMTP_PORT', 587);
 define('SMTP_USERNAME', 'noconfidential0@gmail.com'); 
 define('SMTP_PASSWORD', 'gurs rqso inrp mpvq');
 define('SMTP_FROM_EMAIL', 'noconfidential0@gmail.com');
-define('SMTP_FROM_NAME', 'Online Mobile Repair Service');
+define('SMTP_FROM_NAME', 'Online Smartphone Repair Service');
 
 
 function sendEmail($to, $subject, $message, $recipientName = '') {
@@ -72,9 +72,9 @@ function sendTechnicianCredentials($technicianName, $technicianEmail, $password)
     $message .= "Email: $technicianEmail\n";
     $message .= "Password: $password\n\n";
     $message .= "IMPORTANT: Please login and change your password immediately for security.\n\n";
-    $message .= "If you have any questions, please contact the administrator.\n\n";
+    $message .= "If you have any questions, please contact the admin.\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
     
     return sendEmail($technicianEmail, $subject, $message, $technicianName);
 }
@@ -82,7 +82,7 @@ function sendTechnicianCredentials($technicianName, $technicianEmail, $password)
  * Send work assignment notification to user
  */
 function sendWorkAssignedToUser($userName, $userEmail, $technicianName, $requestId, $description) {
-    $subject = "Work Assigned: Your Mobile Repair Request #$requestId";
+    $subject = "Work Assigned: Your Repair Request ID #$requestId";
     
     $message = "Dear $userName,\n\n";
     $message .= "Your service request has been assigned to a technician.\n\n";
@@ -91,7 +91,7 @@ function sendWorkAssignedToUser($userName, $userEmail, $technicianName, $request
     $message .= "Assigned Technician: $technicianName\n\n";
     $message .= "The technician will start working on your device soon. You can check the status of your request on our portal.\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
     
     return sendEmail($userEmail, $subject, $message, $userName);
 }
@@ -112,7 +112,7 @@ function sendWorkAssignedToTechnician($techName, $techEmail, $userName, $request
     $message .= "Please login to the Technician Portal to view full details of this work order.\n";
     $message .= "Portal URL: http://localhost:8000/technician/technicianLogin.php\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
     
     return sendEmail($techEmail, $subject, $message, $techName);
 }
@@ -120,7 +120,7 @@ function sendWorkAssignedToTechnician($techName, $techEmail, $userName, $request
  * Send work completion notification to user
  */
 function sendWorkCompletionToUser($userName, $userEmail, $technicianName, $requestId, $description) {
-    $subject = "Service Completed: Your Mobile Repair Request #$requestId";
+    $subject = "Service Completed: Your Repair Request ID #$requestId";
     
     $message = "Dear $userName,\n\n";
     $message .= "We are pleased to inform you that your service request has been completed.\n\n";
@@ -129,9 +129,9 @@ function sendWorkCompletionToUser($userName, $userEmail, $technicianName, $reque
     $message .= "Technician: $technicianName\n";
     $message .= "Status: COMPLETED\n\n";
     $message .= "You can now visit our center or check the final status on our portal.\n\n";
-    $message .= "Thank you for choosing Online Mobile Repair Service!\n\n";
+    $message .= "Thank you for choosing Online Smartphone Repair Service!\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
     
     return sendEmail($userEmail, $subject, $message, $userName);
 }
@@ -140,14 +140,30 @@ function sendWorkCompletionToUser($userName, $userEmail, $technicianName, $reque
  * Send notification to user that technician is busy
  */
 function sendTechnicianBusyNotification($userName, $userEmail, $technicianName, $requestId) {
-    $subject = "Update: Your Mobile Repair Request #$requestId";
+    $subject = "Update: Your Repair Request ID #$requestId";
     
     $message = "Dear $userName,\n\n";
     $message .= "Your service request #$requestId has been assigned to $technicianName.\n\n";
     $message .= "Please note: The technician is currently busy with another work order. Your device will be attended to as soon as they are free.\n\n";
     $message .= "We will notify you via email as soon as the work on your device officially starts.\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
+    
+    return sendEmail($userEmail, $subject, $message, $userName);
+}
+
+/**
+ * Send notification to user that technician status is updated from busy to available (free)
+ */
+function sendTechnicianAvailableNotification($userName, $userEmail, $technicianName, $requestId) {
+    $subject = "Technician Availability: Your Repair Request ID #$requestId";
+    
+    $message = "Dear $userName,\n\n";
+    $message .= "We are pleased to inform you that the technician is now free and will let you know when your work starts.\n\n";
+    $message .= "Technician $technicianName is now handling your device.\n\n";
+    $message .= "You will receive another notification once the request is started.\n\n";
+    $message .= "Best Regards,\n";
+    $message .= "Online Smartphone Repair Service Team";
     
     return sendEmail($userEmail, $subject, $message, $userName);
 }
@@ -157,14 +173,14 @@ function sendTechnicianBusyNotification($userName, $userEmail, $technicianName, 
  * Send notification to user that work has started
  */
 function sendWorkStartedNotification($userName, $userEmail, $technicianName, $requestId) {
-    $subject = "Work Started: Your Mobile Repair Request #$requestId";
+    $subject = "Work Started: Your Repair Request ID #$requestId";
     
     $message = "Dear $userName,\n\n";
     $message .= "We are pleased to inform you that the work on your service request #$requestId has officially started.\n\n";
     $message .= "Technician $technicianName is now working on your device.\n\n";
     $message .= "You will receive another notification once the service is completed.\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
     
     return sendEmail($userEmail, $subject, $message, $userName);
 }
@@ -173,10 +189,10 @@ function sendWorkStartedNotification($userName, $userEmail, $technicianName, $re
  * Send notification to user that their request has been rejected
  */
 function sendRequestRejectionToUser($userName, $userEmail, $requestId, $description, $rejectionReason = '') {
-    $subject = "Update: Your Mobile Repair Request #$requestId - Rejected";
+    $subject = "Rejected: Your Repair Request ID #$requestId";
     
     $message = "Dear $userName,\n\n";
-    $message .= "We regret to inform you that your service request #$requestId has been rejected by the administrator.\n\n";
+    $message .= "We regret to inform you that your service request #$requestId has been rejected by the admin.\n\n";
     $message .= "Request ID: $requestId\n";
     $message .= "Request Description: $description\n\n";
     if(!empty($rejectionReason)){
@@ -186,7 +202,7 @@ function sendRequestRejectionToUser($userName, $userEmail, $requestId, $descript
     $message .= "Please consider the rejection reason and submit a new valid request.\n\n";
     $message .= "If you have any questions, please contact our support team.\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
     
     return sendEmail($userEmail, $subject, $message, $userName);
 }
@@ -195,16 +211,16 @@ function sendRequestRejectionToUser($userName, $userEmail, $requestId, $descript
  * Send notification to user that their request has been received
  */
 function sendRequestReceivedNotification($userName, $userEmail, $requestId, $requestInfo) {
-    $subject = "Request Received: Your Mobile Repair Request #$requestId";
+    $subject = "Request Received: Your Repair Request ID #$requestId";
     
     $message = "Dear $userName,\n\n";
-    $message .= "Your service request has been successfully submitted and received by our system.\n\n";
+    $message .= "Your service request has been successfully submitted and received by our admin.\n\n";
     $message .= "Request Details:\n";
     $message .= "Request ID: $requestId\n";
     $message .= "Request Info: $requestInfo\n\n";
-    $message .= "The administrator will assign a technician to your request shortly. You can track the status of your request on our portal.\n\n";
+    $message .= "The admin will assign a technician to your request shortly. You can track the status of your request on our portal.\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
     
     return sendEmail($userEmail, $subject, $message, $userName);
 }
@@ -217,7 +233,7 @@ function sendNewUserAccountEmail($userName, $userEmail, $plainPassword) {
     $subject = "Welcome! Your Account Has Been Created";
 
     $message  = "Dear $userName,\n\n";
-    $message .= "Your account has been created on the Online Mobile Repair Service portal by the administrator.\n\n";
+    $message .= "Your account has been created on the Online Smartphone Repair Service portal by the admin.\n\n";
     $message .= "Your Login Details:\n";
     $message .= "Portal URL: http://localhost:8000/user/userLogin.php\n";
     $message .= "Email   : $userEmail\n";
@@ -225,7 +241,7 @@ function sendNewUserAccountEmail($userName, $userEmail, $plainPassword) {
     $message .= "Please login and change your password at your earliest convenience.\n\n";
     $message .= "If you have any questions, please contact our support team.\n\n";
     $message .= "Best Regards,\n";
-    $message .= "Online Mobile Repair Service Team";
+    $message .= "Online Smartphone Repair Service Team";
 
     return sendEmail($userEmail, $subject, $message, $userName);
 }

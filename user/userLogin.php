@@ -57,7 +57,7 @@ if(!isset($_SESSION['is_login'])){ //Checks if the user is already logged in
         <h2 class="title"><span> USER</span> LOGIN PANEL</h2>
         <div class="input-div one">
           <div class="i">
-            <i class="fas fa-user"></i>
+            <i class="fas fa-user"></i> Email
           </div>
           <div class="div">
             <input type="email" class="form-control" placeholder="Enter Your Email Address" name="rEmail">
@@ -65,18 +65,20 @@ if(!isset($_SESSION['is_login'])){ //Checks if the user is already logged in
         </div>
         <div class="input-div pass">
           <div class="i"> 
-            <i class="fas fa-lock"></i>
+            <i class="fas fa-lock"></i> Password
           </div>
           <div class="div">
             <input type="password" class="form-control" placeholder="Enter Your Password" name="rPassword" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
           </div>
         </div>
-        <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <button type="submit" class="btn btn-primary mt-2 mb-4"><i class="fas fa-sign-in-alt"></i> Login</button>
         <?php if(isset($msg)) {echo $msg; } ?>
         
         
-        <a href="../index.php" class="btn text-center" title="Back"><i class="fas fa-backward"></i> Back to Home</a>
-        <div class="">Do not Have an Account ? <a href="../userRegistration.php" class="text-center"><i class="fas fa-user-plus"></i> Click Here To Create An Account</a></div>
+        <a href="../index.php" class="btn btn-secondary mt-2 mb-4 text-center" title="Back"><i class="fas fa-backward"></i> Back to Home</a>
+        <div class="">Do not Have an Account ? 
+        <a href="../userRegistration.php" class="text-center"><i class="fas fa-user-plus"></i> Click Here To Create An Account</a>
+        </div>
 
       </form>  
    

@@ -22,6 +22,21 @@ session_start();
     $aname = $_REQUEST['name'];
     $aemail = $_REQUEST['email'];
 
+
+//Duplicate email check before inserting
+$sql = "SELECT id FROM adminlogin_tb WHERE email='".$_POST['email']."'";
+$result = $conn->query($sql);
+
+if($result->num_rows > 0){
+  // Email already exists — block the insert
+  $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert">
+     <i class="fas fa-exclamation-circle"></i> An admin with this email already exists. Please use a different email.
+   </div>';
+  $result->close();
+} else {
+ $result->close();
+
+
     $sql = "UPDATE adminlogin_tb SET id = '$aid', name = '$aname', email = '$aemail' WHERE id = '$aid'";
     if($conn->query($sql) == TRUE){
      // below msg display on form submit success
@@ -32,6 +47,7 @@ session_start();
      $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert"> Unable to Update </div>';
     }
   }
+}
 }
 ?>
 
@@ -52,13 +68,14 @@ session_start();
       <input type="text" class="form-control" id="id" name="id" readonly value="<?php if(isset($row['id'])) {echo $row['id']; }?>">
     </div>
     <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" name="email" value="<?php if(isset($row['email'])) {echo $row['email']; }?>" readonly>
+    </div>
+    <div class="form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" name="name" value="<?php if(isset($row['name'])) {echo $row['name']; }?>">
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" class="form-control" id="email" name="email" value="<?php if(isset($row['email'])) {echo $row['email']; }?>">
-    </div>
+    
 
     <div class="text-center">
       <button type="submit" class="btn" id="adminupdate" name="adminupdate" style="background-color: #28c38e;"><i class="fas fa-user-edit"></i> Update</button>

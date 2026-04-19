@@ -20,6 +20,23 @@ if(isset($_REQUEST['addadmin'])){
    $aname = $_REQUEST['name'];
    $aEmail = $_REQUEST['email'];
    $aPassword = md5($_POST['password']);
+  //  $aPassword = $_POST['password'];
+
+
+//Duplicate email check before inserting
+$sql = "SELECT id FROM adminlogin_tb WHERE email='".$_POST['email']."'";
+$result = $conn->query($sql);
+
+if($result->num_rows > 0){
+  // Email already exists — block the insert
+  $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert">
+     <i class="fas fa-exclamation-circle"></i> An admin with this email already exists. Please use a different email.
+   </div>';
+  $result->close();
+} else {
+ $result->close();
+
+
    $sql = "INSERT INTO adminlogin_tb (name, email, password) VALUES ('$aname', '$aEmail', '$aPassword')";
    if($conn->query($sql) == TRUE){
     // below msg display on form submit success
@@ -30,6 +47,7 @@ if(isset($_REQUEST['addadmin'])){
     $msg = '<div class="alert alert-danger col-sm-6 mt-2" role="alert"> Unable to Add </div>';
    }
  }
+}
 }
 ?>
 

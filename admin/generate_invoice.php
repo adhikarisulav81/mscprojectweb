@@ -10,7 +10,7 @@ if(!isset($_SESSION['is_adminlogin'])){
 
 if(isset($_POST['id'])){
     $id = $_POST['id'];
-    $sql = "SELECT * FROM assignwork_tb WHERE request_id = $id";
+    $sql = "SELECT *, created_at FROM assignwork_tb WHERE request_id = $id";
     $result = $conn->query($sql);
     if($result->num_rows == 1){
         $row = $result->fetch_assoc();
@@ -29,34 +29,35 @@ if(isset($_POST['id'])){
  <title>Invoice #<?php echo $row['request_id']; ?></title>
  <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="../css/bootstrap.min.css">
+
  <style>
    /* @media print{
      .d-print-none { display: none !important; }
    } */
    /* body { background-color: #f8f9fa; } */
    .invoice-box {
-       max-width: 800px;
+       max-width: 900px;
        margin: auto;
        background: white;
        padding: 40px;
-       border-radius: 8px;
+       border-radius: 12px;
        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-       font-size: 16px;
-       line-height: 24px;
+       font-size: 17px;
+       /* line-height: 24px; */
        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
        color: #333;
    }
    .invoice-box table { width: 100%; line-height: inherit; text-align: left; border-collapse: collapse; }
-   .invoice-box table td { padding: 10px; vertical-align: top; }
+   .invoice-box table td { padding: 7px; vertical-align: top; }
    .invoice-box table tr td:nth-child(2) { text-align: right; }
-   .invoice-box table tr.top table td { padding-bottom: 30px; }
-   .invoice-box table tr.top table td.title { font-size: 38px; line-height: 45px; color: #24ad7f; font-weight: bold; }
+   .invoice-box table tr.top table td { padding-bottom: 28px; }
+   .invoice-box table tr.top table td.title { font-size: 40px; line-height: 45px; color: #24ad7f; font-weight: bold; }
    .invoice-box table tr.information table td { padding-bottom: 20px; }
    .invoice-box table tr.heading td { background: #f0f0f0; border-bottom: 2px solid #ddd; font-weight: bold; }
    .invoice-box table tr.details td { padding-bottom: 20px; }
-   .invoice-box table tr.item td{ border-bottom: 1px solid #eee; }
-   .invoice-box table tr.item.last td { border-bottom: none; }
-   .signature-box { margin-top: 50px; text-align: right; }
+   /* .invoice-box table tr.item td{ border-bottom: 1px solid #eee; } */
+   /* .invoice-box table tr.item.last td { border-bottom: none; } */
+   .signature-box { text-align: right; }
  </style>
 </head>
 <body>
@@ -67,12 +68,19 @@ if(isset($_POST['id'])){
                     <table>
                         <tr>
                             <td class="title">
-                                <i class="fas fa-file-invoice-dollar"></i> INVOICE
+                                <i class="fas fa-receipt"></i> INVOICE
                             </td>
                             
                             <td>
-                                <strong>Invoice #:</strong> <?php echo $row['request_id']; ?><br>
-                                <strong>Assigned Date:</strong> <?php echo $row['assign_date']; ?><br>
+                            <br><br>
+                            <strong>Invoice ID:</strong> <?php echo $row['request_id']; ?><br>
+                                
+                                <!-- <?php $invoice_date = date('d M Y'); ?> // today date -->
+
+                                <strong>Invoice Date:</strong> <?php echo $invoice_date; ?><br>
+                                <strong>Assigned:</strong> <?php echo $row['assign_date']; ?><br>
+                                <strong>Completed:</strong> <?php echo $row['created_at']; ?><br>
+
                                 <!-- <strong>Delivery Date:</strong>  -->
                                 <?php /*echo $row['deliveryDate']; */?>
                             </td>
@@ -126,17 +134,18 @@ if(isset($_POST['id'])){
             </tr>
         </table>
         
-        <div class="signature-box mt-5 pt-5">
+        <!-- <div class="signature-box mt-5 pt-5">
             <strong>Authorized Signature</strong><br>
             _______________________________
-        </div>
+        </div> -->
         
-        <div class="text-center mt-5 d-print-none">
+        <div class="text-center mt-4 d-print-none">
             <button onclick="window.print();" class="btn btn-success btn-md shadow"><i class="fas fa-print"></i> Print Invoice</button>
         </div>
     </div>
 
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="../css/all.min.css">
+    <?php
+include('includes/footer.php'); 
+?>
 </body>
 </html>

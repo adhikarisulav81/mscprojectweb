@@ -12,11 +12,11 @@ session_start();
  }
 
  // Get technician name
- $sql = "SELECT empName FROM technician_tb WHERE empEmail='$tEmail'";
+ $sql = "SELECT techName FROM technician_tb WHERE techEmail='$tEmail'";
  $result = $conn->query($sql);
  if($result->num_rows == 1){
   $row = $result->fetch_assoc();
-  $tName = $row['empName'];
+  $tName = $row['techName'];
  }
 ?>
 

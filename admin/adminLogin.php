@@ -5,7 +5,9 @@ session_start();
 if(!isset($_SESSION['is_adminlogin'])){
   if(isset($_REQUEST['aEmail'])){
     $aEmail = $_REQUEST['aEmail'];
+    // $aPassword = $_POST['aPassword'];
     $aPassword = md5($_POST['aPassword']);
+
     $sql = "SELECT email, password FROM adminlogin_tb WHERE email='".$aEmail."' AND password='".$aPassword."' limit 1";
     $result = $conn->query($sql);
     if($result->num_rows == 1){
@@ -45,7 +47,7 @@ if(!isset($_SESSION['is_adminlogin'])){
 				<h2 class="title"><span>ADMIN </span>LOGIN PANEL</h2>
            		<div class="input-div one">
            		   <div class="i">
-                  <i class="far fa-envelope"></i>
+                  <i class="far fa-envelope"></i> Email
            		   </div>
            		   <div class="div">
 
@@ -54,7 +56,7 @@ if(!isset($_SESSION['is_adminlogin'])){
            		</div>
            		<div class="input-div pass">
            		   <div class="i"> 
-           		    	<i class="fas fa-lock"></i>
+           		    	<i class="fas fa-lock"></i> Password
            		   </div>
            		   <div class="div">
 
@@ -62,10 +64,10 @@ if(!isset($_SESSION['is_adminlogin'])){
             	   </div>
             	</div>
 
-              <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+              <button type="submit" class="btn btn-sm btn-primary mt-3 mb-3"><i class="fas fa-sign-in-alt"></i> Login</button>
               <?php if(isset($msg)) {echo $msg; } ?>
 
-                <a href="../index.php" class="btn text-center" title="Back"><i class="fas fa-backward"></i> Back
+                <a href="../index.php" class="btn btn-sm btn-secondary mt-3 mb-3 text-center" title="Back"><i class="fas fa-backward"></i> Back
               to Home</a>
 
             </form>
