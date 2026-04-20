@@ -18,9 +18,9 @@ session_start();
   <!-- <h3 class="title text-center font-weight-bold text-dark mb-4 mt-2" style="font-family: Arial, Helvetica, sans-serif;">
     <i class="fas fa-chart-bar"></i> ADMIN <span>DASHBOARD</span>
   </h3> -->
-  <h4 class="text-center text-white bg-dark mb-4"
+  <h4 class="text-center text-white bg-dark mb-3"
         style="padding: 7px; border-radius: 5px;">
-        Welcome <?php echo $aEmail; ?> !
+        Welcome Admin - <?php echo $aEmail; ?> !
     </h4>
   <?php
   // Summary Dashboard

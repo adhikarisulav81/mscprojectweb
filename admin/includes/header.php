@@ -74,7 +74,7 @@
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'user') { echo 'active'; } ?>" href="user.php">
        <i class="fas fa-user"></i>
-        User
+        Customer
        </a>
       </li>
       <li class="nav-item">

@@ -24,12 +24,12 @@ if(isset($_SESSION['is_login'])){
  $priority_filter = isset($_GET['priority']) ? $_GET['priority'] : 'All';
 ?>
 
-<div class="col-sm-9 col-md-10 mt-5">
+<div class="col-sm-9 col-md-10 mt-4">
   <!-- <h3 class="title text-center font-weight-bold text-dark mb-4 mt-2" style="font-family: Arial, Helvetica, sans-serif;">
     <i class="fas fa-chart-bar"></i> USER <span>DASHBOARD</span>
   </h3> -->
-  <h4 class="text-center text-white font-weight-bold bg-dark mb-3" style="padding: 7px; border-radius: 5px;">
-    WELCOME <?php echo $rName ?> !
+  <h4 class="text-center text-white bg-dark mb-3" style="padding: 7px; border-radius: 5px;">
+    Welcome Customer - <?php echo $rName ?> !
   </h4>
   <?php
   // Summary Dashboard

@@ -41,30 +41,32 @@ if(!isset($_SESSION['is_techlogin'])){
 
 <body>
 
-	<header class="container mt-5 shadow-lg mb-5 bg-white rounded" id="register" data-aos="fade-down">
+	<header class="container mt-5 shadow-lg p-5 mb-5 bg-white rounded" id="register" data-aos="fade-down">
 		
 		<div class="login-content">
       <form action="" method="POST">
-        <h2 class="title"><span>TECHNICIAN</span> LOGIN PANEL</h2>
-        <div class="input-div one">
-          <div class="i">
+      <h4 class="text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+    Technician Login Panel
+  </h4> 
+        <div class="input-div one mb-2">
+          <div class="i font-weight-bold">
             <i class="fas fa-envelope"></i> Email
           </div>
           <div class="div">
             <input type="email" class="form-control" placeholder="Enter Your Email Address" name="tEmail" required>
           </div>
         </div>
-        <div class="input-div pass">
-          <div class="i"> 
+        <div class="input-div pass mb-3">
+          <div class="i font-weight-bold"> 
             <i class="fas fa-lock"></i> Password
           </div>
           <div class="div">
             <input type="password" class="form-control" placeholder="Enter Your Password" name="tPassword" required>
           </div>
         </div>
-        <button type="submit" class="btn btn-sm btn-primary mt-3 mb-3"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <button type="submit" class="btn btn-primary mt-3 mb-3"><i class="fas fa-sign-in-alt"></i> Login</button>
         <?php if(isset($msg)) {echo $msg; } ?>
-        <a href="../index.php" class="btn btn-sm btn-secondary text-center mt-3 mb-3" title="Back"><i class="fas fa-backward"></i> Back to Home</a>
+        <a href="../index.php" class="btn btn-secondary text-center mt-3 mb-3" title="Back"><i class="fas fa-backward"></i> Back to Home</a>
 
       </form>  
    

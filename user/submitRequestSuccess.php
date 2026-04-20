@@ -19,8 +19,9 @@ if($result->num_rows == 1){
 
 
  <div class='table-responsive-sm ml-5'>
-  <h3 class='title text-center font-weight-bold text-dark mb-5 mt-5' style='font-family: Arial, Helvetica, sans-serif;'>
-  <i class='far fa-share-square'></i> REQUEST <span>SUBMITTED</span></h3>
+ <h4 class='title font-weight-bold text-center text-white bg-dark mb-3 mt-4' style='padding: 7px; border-radius: 5px;'>
+ REQUEST SUBMITTED
+   </h4> 
   <div class='alert alert-dark col-sm-6'>Remember Your <strong class='text-danger'>Request ID</strong> to Track your Request Status<a href='checkStatus.php' class alert> <i>Click here to Track your Request</i></a></div>
 
   <form class='' action='' method='POST' enctype='multipart/form-data'>
@@ -50,7 +51,7 @@ if($result->num_rows == 1){
 
   </tbody>
  </table> 
-        <a class='btn btn-info mt-5' name='Print' onClick='window.print()''><i class='fas fa-print'></i> Print</a>
+        <a class='btn text-white btn-success mt-5' name='Print' onClick='window.print()''><i class='fas fa-print'></i> Print</a>
         <a href='submitRequest.php' class='btn btn-secondary mt-5' name='Back''><i class='fas fa-backward'></i> Back</a>
  </div>
  ";

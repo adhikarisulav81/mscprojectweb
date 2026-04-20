@@ -125,7 +125,7 @@ function sendRequestReceivedNotification($userName, $userEmail, $requestId, $req
  * Send request assignment notification to user
  */
 function sendWorkAssignedToUser($userName, $userEmail, $technicianName, $requestId, $description) {
-    $subject = "Work Assigned: Your Repair Request ID #$requestId";
+    $subject = "Request Assigned: Your Repair Request ID #$requestId";
     
     $message = "Dear $userName,\n\n";
     $message .= "Your request has been assigned to a technician.\n\n";

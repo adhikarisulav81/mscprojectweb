@@ -55,14 +55,15 @@
 
 <body>
 
-	<header class="container mt-5 shadow-lg mb-5 bg-white rounded" id="register">
+	<header class="container mt-5 p-5 shadow-lg mb-5 bg-white rounded" id="register">
 		
 		<div class="login-content">
     
     <form action="" method="POST">
-        <h2 class="title"><span>Create</span> An Account</h2>
-           		<div class="input-div one">
-           		   <div class="i">
+    <h4 class="text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+    Create an Account
+  </h4>           		<div class="input-div one mb-2">
+           		   <div class="i font-weight-bold">
            		   		<i class="fas fa-user"></i> Name
            		   </div>
            		   <div class="div">
@@ -70,9 +71,9 @@
             class="form-control" placeholder="Enter Name" name="rName" value="">
            		   </div>
            		</div>
-               <div class="input-div one">
-           		   <div class="i">
-                  <i class="far fa-envelope"></i> Email <span class="text-danger"> *</span>
+               <div class="input-div one mb-2">
+           		   <div class="i font-weight-bold">
+                  <i class="fas fa-envelope"></i> Email <span class="text-danger"> *</span>
            		   </div>
            		   <div class="div">
                   <input type="email"
@@ -80,12 +81,8 @@
            		   </div>
            		</div>
 
-
-
-
-
-           		<div class="input-div pass">
-           		   <div class="i"> 
+           		<div class="input-div pass mb-2">
+           		   <div class="i font-weight-bold"> 
            		    	<i class="fas fa-lock"></i> Password
            		   </div>
            		   <div class="div">
@@ -93,8 +90,8 @@
             	   </div>
             	</div>
 
-              <div class="input-div pass">
-           		   <div class="i"> 
+              <div class="input-div pass mb-3">
+           		   <div class="i font-weight-bold"> 
            		    	<i class="fas fa-lock"></i> Confirm Password
            		   </div>
            		   <div class="div">
@@ -102,9 +99,9 @@
             	   </div>
             	</div>
 
-              <button type="submit" class="btn btn-primary btn-sm mt-2 mb-3" name="rSignup" title="Register Your Account"><i class="fas fa-user-plus"></i> Sign Up</button>
+              <button type="submit" class="btn btn-primary mt-2 mb-3" name="rSignup" title="Register Your Account"><i class="fas fa-user-plus"></i> Sign Up</button>
               <?php if(isset($msg)) {echo $msg; } ?>
-              <a href="index.php" class="btn btn-sm btn-secondary text-center mt-2 mb-3" title="Back"><i class="fas fa-backward"></i> Back
+              <a href="index.php" class="btn btn-secondary text-center mt-2 mb-3" title="Back"><i class="fas fa-backward"></i> Back
               to Home</a>
               <div class="">Already Have an Account ? <a href="user/userLogin.php" class="text-center"><i class="fas fa-sign-in-alt"></i> Click Here To Login</a></div>
             </form>              

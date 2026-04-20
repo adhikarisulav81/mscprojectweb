@@ -40,22 +40,24 @@ if(!isset($_SESSION['is_adminlogin'])){
 </head>
 
 <body>
-	<header class="container mt-5 shadow-lg p-3 mb-5 bg-white rounded" id="register" data-aos="fade-down">
+	<header class="container mt-5 shadow-lg p-5 mb-5 bg-white rounded" id="register" data-aos="fade-down">
 		
 		<div class="login-content">
     <form action="" method="POST">
-				<h2 class="title"><span>ADMIN </span>LOGIN PANEL</h2>
-           		<div class="input-div one">
-           		   <div class="i">
-                  <i class="far fa-envelope"></i> Email
+    <h4 class="text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+    Admin Login Panel
+  </h4> 
+           		<div class="input-div one mb-2">
+           		   <div class="i font-weight-bold">
+                  <i class="fas fa-envelope"></i> Email
            		   </div>
            		   <div class="div">
 
                   <input type="email" class="form-control" placeholder="Email" name="aEmail">
            		   </div>
            		</div>
-           		<div class="input-div pass">
-           		   <div class="i"> 
+           		<div class="input-div pass mb-3">
+           		   <div class="i font-weight-bold"> 
            		    	<i class="fas fa-lock"></i> Password
            		   </div>
            		   <div class="div">
@@ -64,10 +66,10 @@ if(!isset($_SESSION['is_adminlogin'])){
             	   </div>
             	</div>
 
-              <button type="submit" class="btn btn-sm btn-primary mt-3 mb-3"><i class="fas fa-sign-in-alt"></i> Login</button>
+              <button type="submit" class="btn btn-primary mt-3 mb-3"><i class="fas fa-sign-in-alt"></i> Login</button>
               <?php if(isset($msg)) {echo $msg; } ?>
 
-                <a href="../index.php" class="btn btn-sm btn-secondary mt-3 mb-3 text-center" title="Back"><i class="fas fa-backward"></i> Back
+                <a href="../index.php" class="btn btn-secondary mt-3 mb-3 text-center" title="Back"><i class="fas fa-backward"></i> Back
               to Home</a>
 
             </form>

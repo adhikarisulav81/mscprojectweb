@@ -176,13 +176,12 @@ else                             { $badge_class = "badge-primary";   }
 <?php endif; ?>
 
         <?php if($status == "Rejected"): ?>
-<div class="alert alert-danger text-center mt-3 mb-0" role="alert">
+<div class="alert alert-danger text-center mt-1" role="alert">
     <i class="fas fa-times-circle fa-lg mr-2"></i>
     <strong>This request has been submitted but rejected by admin.</strong>
     <br>
-    You might have received reasons for rejection in your email.
-    <br><br>
-    <a href="submitRequest.php" class="btn btn-sm btn-success shadow-sm mb-2"><i class="fas fa-plus"></i> Create New</a>
+    You might have received reasons for rejection in your email.<br>
+    <a href="submitRequest.php" class="btn btn-sm btn-success shadow-sm"><i class="fas fa-plus"></i> Create New</a>
     
 </div>
 <?php endif; ?>
@@ -223,7 +222,7 @@ else                             { $badge_class = "badge-primary";   }
           </table>
         </div>
 
-        <div class="mt-4 text-center d-print-none">
+        <div class="text-center d-print-none">
           <button type="button" class="btn btn-dark btn-md mr-3 shadow-sm" onclick="window.print()"><i class="fas fa-print"></i> Print Receipt</button>
           <a href="checkStatus.php" class="btn btn-outline-secondary btn-md shadow-sm">Check Another</a>
         </div>

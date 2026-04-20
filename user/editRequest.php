@@ -93,8 +93,9 @@ if(isset($_POST['updaterequest'])){
 
 <div class="col-sm-9 col-md-10">
   <form class="" action="" method="POST">
-    <h3 class="title text-center font-weight-bold text-dark mb-5 mt-5" style="font-family: Arial, Helvetica, sans-serif;">
-    <i class="far fa-edit"></i> EDIT <span>REQUEST</span></h3>
+  <h4 class='title font-weight-bold text-center text-white bg-dark mb-3 mt-4' style='padding: 7px; border-radius: 5px;'>
+ EDIT REQUEST   
+ </h4> 
 
     <div class="alert alert-info">
         <i class="fas fa-info-circle"></i> You can only edit requests that have not been assigned to a technician.
@@ -102,26 +103,26 @@ if(isset($_POST['updaterequest'])){
 
     <div class="form-row">
       <div class="form-group col-md-3">
-        <label for="category"><i class="fas fa-list"></i> Category</label>
+        <label for="category" class="font-weight-bold"><i class="fas fa-folder"></i> Category<span class="text-danger"> *</span></label>
         <select class="form-control" id="category" name="category" required>
           <option value="">Select Category</option>
         </select>
       </div>
       <div class="form-group col-md-3">
-        <label for="subcategory"><i class="fas fa-list-alt"></i> Subcategory</label>
+        <label for="subcategory" class="font-weight-bold"><i class="fas fa-list-alt"></i> Subcategory<span class="text-danger"> *</span></label>
         <!-- This dropdown is disabled by default. It only becomes active after the user picks a category. Same applies to Model and Service.-->
         <select class="form-control" id="subcategory" name="subcategory" required disabled>
           <option value="">Select Subcategory</option>
         </select>
       </div>
       <div class="form-group col-md-3">
-        <label for="model"><i class="fas fa-mobile"></i> Model</label>
+        <label for="model" class="font-weight-bold"><i class="fas fa-mobile"></i> Model<span class="text-danger"> *</span></label>
         <select class="form-control" id="model" name="model" required disabled>
           <option value="">Select Model</option>
         </select>
       </div>
       <div class="form-group col-md-3">
-        <label for="service"><i class="fas fa-tools"></i> Service</label>
+        <label for="service" class="font-weight-bold"><i class="fas fa-cog"></i> Service<span class="text-danger"> *</span></label>
         <select class="form-control" id="service" name="service" required disabled>
           <option value="">Select Service</option>
         </select>
@@ -130,11 +131,11 @@ if(isset($_POST['updaterequest'])){
     
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label for="price"><i class="fas fa-rupee-sign"></i> Base Price</label>
+        <label for="price" class="font-weight-bold"><i class="fas fa-rupee-sign"></i> Base Price<span class="text-danger"> *</span></label>
         <input type="text" class="form-control" id="price" name="price" readonly>
       </div>
       <div class="form-group col-md-4">
-        <label for="priority"><i class="fas fa-exclamation-circle"></i> Priority</label>
+        <label for="priority" class="font-weight-bold"><i class="fas fa-exclamation-circle"></i> Priority<span class="text-danger"> *</span></label>
         <select class="form-control" id="priority" name="priority" required>
 
         <!-- Pre-selects whichever priority was saved in the database. The ? 'selected' : '' adds the word selected to the matching option, which makes the browser show it as chosen.-->
@@ -143,7 +144,7 @@ if(isset($_POST['updaterequest'])){
         </select>
       </div>
       <div class="form-group col-md-4">
-        <label for="final_price"><i class="fas fa-money-bill-wave"></i> Final Price</label>
+        <label for="final_price" class="font-weight-bold"><i class="fas fa-money-bill-wave"></i> Final Price<span class="text-danger"> *</span></label>
         <!-- Read-only field automatically calculated by JavaScript (base price + priority surcharge).-->
         <input type="text" class="form-control" id="final_price" name="final_price" readonly>
       </div>
@@ -151,20 +152,20 @@ if(isset($_POST['updaterequest'])){
     <div id="priority_info" class="alert alert-info" style="display:none;"></div>
 
     <div class="form-group">
-      <label for="inputRequestInfo"><i class="fas fa-info-circle"></i> Request Info</label>
+      <label for="inputRequestInfo" class="font-weight-bold"><i class="fas fa-info-circle"></i> Request Info<span class="text-danger"> *</span></label>
       <input type="text" class="form-control" id="inputRequestInfo" placeholder="Request Info" name="requestinfo" value="<?php echo $request_data['request_info']; ?>" readonly>  <!-- This fills the input with the existing saved value from the database.-->
     </div>
     <div class="form-group">
-      <label for="inputRequestDescription"><i class="fas fa-pen-nib"></i> Description</label>
+      <label for="inputRequestDescription" class="font-weight-bold"><i class="fas fa-pen-nib"></i> Description<span class="text-danger"> *</span></label>
       <input type="text" class="form-control" id="inputRequestDescription" placeholder="Write Description" name="requestdesc" value="<?php echo $request_data['request_desc']; ?>">
     </div>
     <div class="form-group">
-      <label for="inputName"><i class="fas fa-users"></i> Name</label>
+      <label for="inputName" class="font-weight-bold"><i class="fas fa-users"></i> Name<span class="text-danger"> *</span></label>
       <input type="text" class="form-control" id="inputName" placeholder="Enter Your Name" name="requestername" value="<?php echo $request_data['requester_name']; ?>" readonly>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputAddress"><i class="fas fa-map-marker-alt"></i> Address</label>
+        <label for="inputAddress" class="font-weight-bold"><i class="fas fa-map-marker-alt"></i> Address<span class="text-danger"> *</span></label>
         <input type="text" class="form-control" id="inputAddress" placeholder="Enter Address" name="requesteradd1" value="<?php echo $request_data['requester_add1']; ?>">
       </div>
       
@@ -172,20 +173,17 @@ if(isset($_POST['updaterequest'])){
     
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputEmail"><i class="far fa-envelope"></i> Email</label>
+        <label for="inputEmail" class="font-weight-bold"><i class="fas fa-envelope"></i> Email<span class="text-danger"> *</span></label>
         <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email Address" name="requesteremail" value="<?php echo $request_data['requester_email']; ?>" readonly>
       </div>
       <div class="form-group col-md-2">
-        <label for="inputMobile"><i class="fas fa-mobile"></i> Mobile</label>
+        <label for="inputMobile" class="font-weight-bold"><i class="fas fa-mobile"></i> Mobile<span class="text-danger"> *</span></label>
         <input type="text" class="form-control" id="inputMobile" placeholder="Enter Mobile Number" name="requestermobile" value="<?php echo $request_data['requester_mobile']; ?>">
       </div>
       <div class="form-group col-md-2">
-        <label for="inputDate"><i class="fas fa-calendar-alt"></i> Requested Date</label>
+        <label for="inputDate" class="font-weight-bold"><i class="fas fa-calendar-alt"></i> Requested Date<span class="text-danger"> *</span></label>
         <input type="date" class="form-control" id="inputDate" name="requestdate" value="<?php echo $request_data['request_date']; ?>">
       </div>
-      
-
-    
 
     </div>
     <button type="submit" class="btn btn-success mt-2" name="updaterequest"><i class="fas fa-save"></i> Update Request</button>

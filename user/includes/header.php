@@ -51,7 +51,7 @@
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'userDashboard') { echo 'active'; } ?>" href="userDashboard.php">
        <i class="fas fa-chart-bar"></i>
-        User Dashboard
+        Customer Dashboard
        </a>
       </li>
       <li class="nav-item">
@@ -76,13 +76,13 @@
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'userProfile') { echo 'active'; } ?>" href="userProfile.php">
        <i class="fas fa-user"></i>
-        User Profile
+        Customer Profile
        </a>
       </li>
       <li class="nav-item">
        <a class="nav-link <?php if(PAGE == 'userSettings') { echo 'active'; } ?>" href="userSettings.php">
        <i class="fas fa-cog"></i>
-        User Settings
+        Customer Settings
        </a>
       </li>
       

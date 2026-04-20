@@ -63,8 +63,8 @@ $total = ($total_res && $r = $total_res->fetch_assoc()) ? $r['total'] : 0;
 <div class="col-sm-9 col-md-10">
   <!-- <h3 class="title text-center font-weight-bold text-dark mb-3 mt-5" style="font-family: Arial, Helvetica, sans-serif;"><i class="fas fa-tachometer-alt"></i> TECHNICIAN <span>DASHBOARD</span></h3> -->
   
-  <h4 class="text-center text-white bg-dark mb-4 mt-4" style="padding: 7px; border-radius: 5px;">
-    Welcome <?php echo $tName ?> !
+  <h4 class="text-center text-white bg-dark mb-3 mt-4" style="padding: 7px; border-radius: 5px;">
+    Welcome Technician - <?php echo $tName ?> !
   </h4>
 
   <div class="row text-center">

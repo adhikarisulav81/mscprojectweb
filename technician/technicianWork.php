@@ -186,7 +186,7 @@ if(isset($_REQUEST['startwork'])){
                 if($row['status'] == 'Assigned'){
                   echo '<form action="" method="POST" class="d-inline"> 
                     <input type="hidden" name="id" value='. $row["request_id"] .'>
-                    <button type="submit" class="btn btn-sm btn-secondary  mr-2 mb-2" title="Start Work" name="startwork" value="Start"><i class="fas fa-play"></i> Start</button>
+                    <button type="submit" class="btn btn-sm btn-secondary mr-2 mb-2" title="Start Work" name="startwork" value="Start"><i class="fas fa-play"></i> Start</button>
                   </form>';
                 }
                 //Only shows the Complete button once work has started. Clicking it opens a confirmation popup modal.
